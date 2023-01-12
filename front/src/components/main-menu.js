@@ -17,8 +17,8 @@ export function MainMenu() {
     try {
       const response = await loginService.tryLogin(userName, password);
       if (response) {
-        const user = await loginService.getUserById(response.id);
-        localStorage.setItem("ADMIN-ID", response.id);
+        const user = await loginService.getUserById(response.token);
+        localStorage.setItem("ADMIN-ID", response.token);
         setUser(user);
       }
     } catch (err) {
@@ -34,20 +34,26 @@ export function MainMenu() {
       {user ? (
         <div>
           <h1>Welcome {user.userName}!</h1>
-          <div>
+          <div style={{ marginBottom: "3rem" }}>
             <button onClick={() => logOut()}>Log Out</button>
           </div>
           <div className="main-menuDiv">
+            <p style={{ color: "white" }}>Make New Quiz</p>
+            <button
+              className="button"
+              onClick={() => navigate("./make-question")}
+            >
+              Go To
+            </button>
+          </div>
+          <div className="main-menuDiv">
+            <p style={{ color: "white" }}>Browse Catalogue</p>
             <button className="button" onClick={() => navigate("./")}>
               Go To
             </button>
           </div>
           <div className="main-menuDiv">
-            <button className="button" onClick={() => navigate("./")}>
-              Go To
-            </button>
-          </div>
-          <div className="main-menuDiv">
+            <p style={{ color: "white" }}>Reports</p>
             <button className="button" onClick={() => navigate("./")}>
               Go To
             </button>

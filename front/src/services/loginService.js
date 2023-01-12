@@ -11,7 +11,7 @@ export function LoginService() {
   };
 
   const getUserById = async (token) => {
-    return fetch("http://localhost:3001/login", { headers: { adminId: token } })
+    return fetch("http://localhost:3001/login", { headers: { adminid: token } })
       .then((res) => res.json())
       .catch((err) => console.log(err));
   };

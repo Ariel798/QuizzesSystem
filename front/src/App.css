@@ -43,13 +43,20 @@ li a {
 }
 
 .main-menuDiv{
-  background-color: gray;
-  height: 60px;
-  margin: 3px;
-  margin-top: 50px;
+  background-color: rgb(86, 86, 86);
+  height: 100px;
+  width: 200px;
+  margin-top: 3rem;  
+  text-align: center;
+  margin: auto;
+  display: flex;
+  text-align: center;
+  display: inline-block;
+  margin: 2rem;
+  border-radius: 1rem;
+
 }
 
-/* CSS */
 .button {
   background-color: #0095ff;
   border: 1px solid transparent;
