@@ -38,17 +38,20 @@ export function MainMenu() {
             <button onClick={() => logOut()}>Log Out</button>
           </div>
           <div className="main-menuDiv">
-            <p style={{ color: "white" }}>Make New Quiz</p>
+            <p style={{ color: "white" }}>Quizzes</p>
             <button
               className="button"
-              onClick={() => navigate("./make-question")}
+              onClick={() => navigate("./quizzesPage")}
             >
               Go To
             </button>
           </div>
           <div className="main-menuDiv">
-            <p style={{ color: "white" }}>Browse Catalogue</p>
-            <button className="button" onClick={() => navigate("./")}>
+            <p style={{ color: "white" }}>Questions</p>
+            <button
+              className="button"
+              onClick={() => navigate("./questionsPage")}
+            >
               Go To
             </button>
           </div>
@@ -68,6 +71,7 @@ export function MainMenu() {
           />
           <input
             value={password}
+            type="password"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />

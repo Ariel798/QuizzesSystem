@@ -1,3 +1,7 @@
-export function QuestionPage(props){
-    return <div>{props.question.body}</div>
+export function QuestionPage(props) {
+  return (
+    <div>
+      <h1>{props.question.body}</h1>
+    </div>
+  );
 }

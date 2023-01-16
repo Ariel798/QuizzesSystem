@@ -7,5 +7,5 @@ const getAdmins = () => {
 };
 
 module.exports = {
-    getAdmins
-}
+  getAdmins,
+};

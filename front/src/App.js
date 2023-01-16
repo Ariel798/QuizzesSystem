@@ -7,11 +7,15 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import { MainMenu } from "./components/main-menu";
+import { QuizzesPage } from "./components/quizzesPage";
+import { QuestionsPage } from "./components/questionsPage";
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<MainMenu />} />
+        <Route path="/quizzesPage" element={<QuizzesPage />} />
+        <Route path="/questionsPage" element={<QuestionsPage />} />
         <Route path="/:quesId">Question</Route>
       </Routes>
     </Router>
