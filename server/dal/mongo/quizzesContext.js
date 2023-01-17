@@ -6,6 +6,13 @@ const getQuizzes = async () => {
   return Quiz.find({});
 };
 
+const loadQuiz = async (id) => {
+  const quiz = await Quiz.findById(id)
+
+  await quiz.populate('questions');
+  return quiz
+};
+
 const addQuiz = async (quiz) => {
   const newQuiz = new Quiz(quiz);
   return await newQuiz.save();
@@ -38,6 +45,7 @@ const editQuiz = (quiz) => {
 
 module.exports = {
   getQuizzes,
+  loadQuiz,
   addQuiz,
   deleteQuiz,
   editQuiz,

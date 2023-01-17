@@ -6,10 +6,16 @@ const {
   addQuiz,
   deleteQuiz,
   editQuiz,
+  loadQuiz,
 } = require("../dal/mongo/quizzesContext");
 
 router.get("/", (req, res) => {
   getQuizzes().then((quizzes) => res.send(quizzes));
+});
+
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  loadQuiz(id).then(quiz=>res.send(quiz))
 });
 
 router.get("/new", (req, res) => {

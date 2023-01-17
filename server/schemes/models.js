@@ -10,6 +10,12 @@ const questionScheme = mongoose.Schema({
   body: String,
   answers: Array,
   correctAnswer: Number,
+  quizzes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Quiz",
+    },
+  ],
 });
 const quizScheme = mongoose.Schema({
   name: String,
