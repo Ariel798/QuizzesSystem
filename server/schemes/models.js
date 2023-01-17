@@ -13,7 +13,7 @@ const questionScheme = mongoose.Schema({
 });
 const quizScheme = mongoose.Schema({
   name: String,
-  password: String,
+  subject: String,
   questions: [
     {
       type: mongoose.Schema.Types.ObjectId,

@@ -44,8 +44,8 @@ router.delete("/:id", (req, res) => {
 
 router.put("/", (req, res) => {
   const { question } = req.body;
-  const filteredArr = editQuestion(question);
-  res.send(filteredArr);
+  const updatedArr = editQuestion(question);
+  res.send(updatedArr);
 });
 
 module.exports = router;

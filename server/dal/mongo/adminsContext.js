@@ -2,7 +2,7 @@ const { Admin } = require("../../schemes/models");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 
-const getAdmins = (username) => {
+const getAdmins = () => {
   return Admin.find({});
 };
 

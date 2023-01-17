@@ -58,6 +58,7 @@ app.use((req, res, next) => {
 
 app.use("/login", require("./routes/login-route"));
 app.use("/questions", require("./routes/questions.route"));
+app.use("/quizzes", require("./routes/quizzes.routes"));
 
 app.listen(process.env.PORT, (err) => {
   if (err) console.log(err);

@@ -1,5 +1,4 @@
 const { Question } = require("../../schemes/models");
-const path = "mongodb://localhost:27017/quizzesSystem";
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 
