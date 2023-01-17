@@ -42,9 +42,14 @@ const editQuestion = (question) => {
   );
 };
 
+const filterBySubject = (subject) => {
+  return Question.find({ subject: subject });
+};
+
 module.exports = {
   getQuestions,
   addQuestion,
   deleteQuestion,
   editQuestion,
+  filterBySubject,
 };

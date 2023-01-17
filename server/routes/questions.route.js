@@ -11,6 +11,7 @@ const {
   addQuestion,
   deleteQuestion,
   editQuestion,
+  filterBySubject,
 } = require("../dal/mongo/questionsContext");
 
 const express = require("express");
@@ -20,12 +21,10 @@ router.get("/", (req, res) => {
   getQuestions().then((questions) => res.send(questions));
 });
 
-// router.get("/filter", (req, res) => {
-//   const { subject } = req.headers;
-//   console.log(subject);
-//   const filteredArr = filterQuestions(subject);
-//   res.send(filteredArr);
-// });
+router.get("/filter", (req, res) => {
+  const { subject } = req.headers;
+  filterBySubject(subject).then((questions) => res.send(questions));
+});
 
 router.post("/", (req, res) => {
   const { question } = req.body;
