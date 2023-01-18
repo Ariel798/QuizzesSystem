@@ -27,13 +27,20 @@ const quizScheme = mongoose.Schema({
     },
   ],
 });
+const studentAnswersScheme = mongoose.Schema({
+  quizId: String,
+  answers: Array,
+  wrongAnswers: Array,
+});
 
 const Admin = mongoose.model("Admin", adminScheme);
 const Quiz = mongoose.model("Quiz", quizScheme);
 const Question = mongoose.model("Question", questionScheme);
+const StudentAnswer = mongoose.model("StudentAnswer", studentAnswersScheme);
 
 module.exports = {
   Admin,
   Quiz,
   Question,
+  StudentAnswer,
 };

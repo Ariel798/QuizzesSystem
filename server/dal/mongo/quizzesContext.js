@@ -7,10 +7,10 @@ const getQuizzes = async () => {
 };
 
 const loadQuiz = async (id) => {
-  const quiz = await Quiz.findById(id)
+  const quiz = await Quiz.findById(id);
 
-  await quiz.populate('questions');
-  return quiz
+  await quiz.populate("questions");
+  return quiz;
 };
 
 const addQuiz = async (quiz) => {
