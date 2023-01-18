@@ -27,20 +27,41 @@ const quizScheme = mongoose.Schema({
     },
   ],
 });
-const studentAnswersScheme = mongoose.Schema({
-  quizId: String,
+const submittedQuizScheme = mongoose.Schema({
+  quizId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Quiz",
+  },
+  studentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Student",
+  },
+  grade: { type: Number, min: 0, max: 100 },
+  passed: Boolean,
   answers: Array,
   wrongAnswers: Array,
+});
+
+const studentScheme = mongoose.Schema({
+  userName: { type:String, required: true },
+  submittedQuizzes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "SubmittedQuiz",
+    },
+  ],
 });
 
 const Admin = mongoose.model("Admin", adminScheme);
 const Quiz = mongoose.model("Quiz", quizScheme);
 const Question = mongoose.model("Question", questionScheme);
-const StudentAnswer = mongoose.model("StudentAnswer", studentAnswersScheme);
+const SubmittedQuiz = mongoose.model("SubmittedQuiz", submittedQuizScheme);
+const Student = mongoose.model("Student", studentScheme);
 
 module.exports = {
   Admin,
   Quiz,
   Question,
-  StudentAnswer,
+  SubmittedQuiz,
+  Student,
 };

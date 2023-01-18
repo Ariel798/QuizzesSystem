@@ -55,10 +55,11 @@ app.use((req, res, next) => {
     next();
   });
 });
-
+app.use("/students", require("./routes/students.route"));
 app.use("/login", require("./routes/login-route"));
 app.use("/questions", require("./routes/questions.route"));
-app.use("/quizzes", require("./routes/quizzes.routes"));
+app.use("/quizzes", require("./routes/quizzes.route"));
+app.use("/submittedquizzes", require("./routes/submitted-quizzes.route"));
 
 app.listen(process.env.PORT, (err) => {
   if (err) console.log(err);
