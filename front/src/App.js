@@ -8,7 +8,8 @@ import {
 } from "react-router-dom";
 import { MainMenu } from "./components/main-menu";
 import { QuizzesPage } from "./components/quizzesPage";
-import { QuestionsPage } from "./components/questionsPage";
+import { QuestionsPage } from "./components/menageQuestion/questionsPage";
+import {NewQuestionPage} from "./components/createQuestion/newQuestionPage";
 function App() {
   return (
     <Router>
@@ -16,7 +17,8 @@ function App() {
         <Route path="/" element={<MainMenu />} />
         <Route path="/quizzesPage" element={<QuizzesPage />} />
         <Route path="/questionsPage" element={<QuestionsPage />} />
-        <Route path="/:quesId">Question</Route>
+        {/* <Route path="/?:id" element={}></Route> */}
+        <Route path="/newQuestionPage" element={<NewQuestionPage />}>new Question</Route>
       </Routes>
     </Router>
   );
