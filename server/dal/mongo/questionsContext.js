@@ -5,6 +5,9 @@ mongoose.set("strictQuery", true);
 const getQuestions = async () => {
   return Question.find({});
 };
+const getQuestion = async (id) => {
+  return Question.findById(id);
+};
 
 const addQuestion = async (question) => {
   const newQuestion = new Question(question);
@@ -47,6 +50,7 @@ const filterBySubject = (subject) => {
 
 module.exports = {
   getQuestions,
+  getQuestion,
   addQuestion,
   deleteQuestion,
   editQuestion,

@@ -8,6 +8,7 @@
 
 const {
   getQuestions,
+  getQuestion,
   addQuestion,
   deleteQuestion,
   editQuestion,
@@ -19,6 +20,11 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   getQuestions().then((questions) => res.send(questions));
+});
+
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  getQuestion(id).then((question) => res.send(question));
 });
 
 router.get("/filter", (req, res) => {

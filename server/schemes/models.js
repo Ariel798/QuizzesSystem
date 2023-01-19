@@ -27,6 +27,7 @@ const quizScheme = mongoose.Schema({
     },
   ],
 });
+//Add date field
 const submittedQuizScheme = mongoose.Schema({
   quizId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -37,13 +38,15 @@ const submittedQuizScheme = mongoose.Schema({
     ref: "Student",
   },
   grade: { type: Number, min: 0, max: 100 },
+  date: { type: Date },
   passed: Boolean,
   answers: Array,
   wrongAnswers: Array,
 });
-
 const studentScheme = mongoose.Schema({
-  userName: { type:String, required: true },
+  fname: { type: String, required: true },
+  lname: { type: String, required: true },
+  idNum: { type: Number, required: true },
   submittedQuizzes: [
     {
       type: mongoose.Schema.Types.ObjectId,
