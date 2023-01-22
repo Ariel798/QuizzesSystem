@@ -27,7 +27,6 @@ const quizScheme = mongoose.Schema({
     },
   ],
 });
-//Add date field
 const submittedQuizScheme = mongoose.Schema({
   quizId: {
     type: mongoose.Schema.Types.ObjectId,

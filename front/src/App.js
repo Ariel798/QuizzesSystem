@@ -7,12 +7,9 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import { MainMenu } from "./components/main-menu";
-import { QuizzesPage } from "./components/Quiz/quizzesPage";
-import { QuestionsPage } from "./components/Question/questionsPage";
-import {NewQuestionPage} from "./components/Question/newQuestionPage";
-import {ShowQuestionPage} from "./components/Question/showQuestionPage";
-import {EditQuestionPage} from "./components/Question/editQuestionPage";
-
+import { QuizzesPage } from "./components/quizzesPage";
+import { QuestionsPage } from "./components/menageQuestion/questionsPage";
+import {NewQuestionPage} from "./components/createQuestion/newQuestionPage";
 function App() {
   return (
     <Router>

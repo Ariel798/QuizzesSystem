@@ -1,9 +1,7 @@
-export class Question {
-  constructor() {
-    this.id,
-    this.number,
-    this.body,
-    this.answers,
-    this.correctAnswer
-  }
-}
+export const Question = {
+  subject: "",
+  number: 0,
+  body: "",
+  answers: [],
+  correctAnswer: 0,
+};
