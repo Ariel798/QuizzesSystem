@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { MainMenu } from "./components/main-menu";
 import { QuizzesPage } from "./components/quizzesPage";
-import { QuestionsPage } from "./components/menageQuestion/questionsPage";
+import { QuestionsPage } from "./components/manage-questions/questionsPage";
 import {NewQuestionPage} from "./components/createQuestion/newQuestionPage";
 function App() {
   return (

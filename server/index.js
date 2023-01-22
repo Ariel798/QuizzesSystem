@@ -4,7 +4,7 @@ const cors = require("cors");
 const { vertifyToken } = require("./lib/jwt");
 const { Admin, Quiz, Question } = require("./schemes/models");
 const { getQuestions } = require("./dal/mongo/questionsContext");
-const path = "mongodb+srv://Liorko310799:310799@mernlior.og9x762.mongodb.net/MernLior?retryWrites=true&w=majority";
+const path = "mongodb://localhost:27017/quizzesSystem";
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 mongoose.connect(path, (err) => {
@@ -61,9 +61,9 @@ app.use("/questions", require("./routes/questions.route"));
 app.use("/quizzes", require("./routes/quizzes.route"));
 app.use("/submittedquizzes", require("./routes/submitted-quizzes.route"));
 
-app.listen(3001, (err) => {
+app.listen(process.env.PORT, (err) => {
   if (err) console.log(err);
-  console.log("Server is listening on port", 3001);
+  console.log("Server is listening on port", process.env.PORT);
 });
 
 process.on("SIGINT", function () {

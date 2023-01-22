@@ -33,8 +33,8 @@ router.get("/filter", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { question } = req.body;
-  addQuestion(question).then((resu) => res.send(resu));
+  const { body } = req;
+  addQuestion(body).then((resu) => res.send(resu));
 });
 
 router.delete("/:id", (req, res) => {
