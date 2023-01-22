@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function QuestionService() {
 
-   const getQuestion = async () => {
+   const getQuestions = async () => {
         try {
           const response = await axios.get('http://localhost:3001/questions');
           return response.data;
@@ -10,6 +10,15 @@ export function QuestionService() {
           console.error(error);
         }
      }
+
+     const showQuestion = async (_id) => {
+      try {
+        const response = await axios.get('http://localhost:3001/questions/'+ _id);
+        return response.data;
+      } catch (error) {
+        console.error(error);
+      }
+   }
 
      const filterBySubject = async () => {
       try {
@@ -49,7 +58,8 @@ export function QuestionService() {
 
 
     return {
-        getQuestion,
+      getQuestions,
+        showQuestion,
 
         addQuestion,
         deleteQuestion,

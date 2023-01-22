@@ -11,17 +11,36 @@ export function QuestionsPage() {
   let navigate = useNavigate();
 
   async function deleteData(_id) {
-    const arr = await service.deleteQuestion(_id);
-    setQuestions(arr);
-    console.log(arr);
-    
+    if (window.confirm('Are you sure?')){
+
+      const arr = await service.deleteQuestion(_id);
+      setQuestions(arr);
+    }
   }
+  async function showData(_id) {
+    const question = await service.showQuestion(_id);
+    alert(JSON.stringify(question));
+  }
+
+  // async function editData(_id) {
+  //   const editQuestion = await service.editQuestion(_id);
+  //   navigate("/editQuestionPage/"+_id);
+  //   setQuestions(editQuestion);
+  //   console.log(editQuestion);
+  // }
+
+  // const handleSelect = (_id) => {
+  //   navigate('/Players', {
+  //     userId: id,
+  //   });
+   
+  // };
+
 
   useEffect(()=>{
     async function fetchData() {
-      const arr = await service.getQuestion();
+      const arr = await service.getQuestions();
       setQuestions(arr);
-      console.log(arr);
     }
     fetchData();
   },[])
@@ -32,12 +51,11 @@ export function QuestionsPage() {
         <button className="btnNav" onClick={() => navigate("../")}>Home</button>
       </div>
       <div>
-      <form class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="Search..."></input>
-        <button class="btn btn-primary" type="button">Search</button>
+      <form className="d-flex">
+        <input className="form-control me-2" type="text" placeholder="Search..." ></input>
+        <button className="btn btn-primary" type="button">Search</button>
       </form>
 
-      <input type='text'  placeholder='Search' />
 
       </div>
 
@@ -47,6 +65,9 @@ export function QuestionsPage() {
       </div>
     
       <table className="table table-striped">
+        <tbody>
+
+       
         <tr>
           <th>Id</th>
           <th>question text</th>
@@ -60,16 +81,17 @@ export function QuestionsPage() {
             <tr key={key}>
               <td>{item._id}</td>
               <td>{item.body}</td>
-              <td>10.08.22</td>
-              <td>single</td>
+              <td>{item.date}</td>
+              <td>{item.type}</td>
               <td>
-                <button className="btn btn-success">show</button> 
-                <button  className="btn btn-success">edit</button> 
+                <button className="btn btn-success" onClick={() => showData(item._id)}>show</button> 
+                <button  className="btn btn-success" onClick={() => navigate(`/editQuestionPage/${item._id}`)}>edit</button> 
                 <button onClick={() => deleteData(item._id)} className="btn btn-danger">delete</button>
               </td>
             </tr>
           )
         })}
+         </tbody>
       </table>
 
      
