@@ -2,8 +2,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { MainMenu } from "./components/main-menu";
 import { QuizzesPage } from "./components/quizzes/quizzesPage";
-import { QuestionsPage } from "./components/manage-questions/questionsPage";
-import { NewQuestionPage } from "./components/createQuestion/newQuestionPage";
+import {QuestionsPage} from "./components/Question/questionsPage";
+import {NewQuestionPage} from "./components/Question/createQuestion/newQuestionPage";
 import { NewQuizPage } from "./components/quizzes/newQuizPage";
 function App() {
   return (
