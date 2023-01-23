@@ -4,7 +4,7 @@ const cors = require("cors");
 const { vertifyToken } = require("./lib/jwt");
 const { Admin, Quiz, Question } = require("./schemes/models");
 const { getQuestions } = require("./dal/mongo/questionsContext");
-const path = "mongodb+srv://Liorko310799:310799@mernlior.og9x762.mongodb.net/MernLior?retryWrites=true&w=majority";
+const path = "mongodb://localhost:27017/quizzesSystem";
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 mongoose.connect(path, (err) => {
