@@ -32,7 +32,6 @@ select {
 
 table {
   border: 2px solid black;
-  width: 800px;
   height: 200px;
   text-align: center;
   align-items: center;
@@ -44,6 +43,9 @@ th {
 
 td {
   text-align: center;
+}
+button {
+  margin: 5px;
 }
 .headline {
   font-family: "Raleway", sans-serif;
