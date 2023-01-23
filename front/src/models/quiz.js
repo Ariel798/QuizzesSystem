@@ -1,8 +1,6 @@
-export class Quiz{
- constructor(){
-    this.id,
-    this.subject,
-    this.authorId,
-    this.questions = []
- }
-}
+export const Quiz = {
+  name: "",
+  subject: "",
+  authorId: "",
+  questions: [],
+};

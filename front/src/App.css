@@ -14,7 +14,46 @@ ul {
 li a {
   display: block;
 }
+input,
+select {
+  border-radius: 5px;
+  background-color: darkgray;
+  height: 2rem;
+}
+.App {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+}
 
+table {
+  border: 2px solid black;
+  width: 800px;
+  height: 200px;
+  text-align: center;
+  align-items: center;
+}
+
+th {
+  border-bottom: 1px solid black;
+}
+
+td {
+  text-align: center;
+}
+.headline {
+  font-family: "Raleway", sans-serif;
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 72px;
+  margin: 24px 0 24px;
+  text-align: center;
+  text-transform: uppercase;
+}
 .topnav {
   background-color: #333;
   overflow: hidden;
@@ -68,6 +107,8 @@ li a {
   background-color: #0095ff;
   border: 1px solid transparent;
   border-radius: 3px;
+  width: 100px;
+  height: 40px;
   box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0 0 inset;
   box-sizing: border-box;
   color: #fff;

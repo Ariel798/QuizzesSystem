@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { QuestionService } from "../../services/questionsService";
 import "./questionsPage.css";
 
@@ -53,7 +53,7 @@ export function QuestionsPage() {
 
       <h1>Questions</h1>
       <div>
-        <button onClick={() => navigate("/newQuestionPage")}>
+        <button onClick={() => navigate("/newquestionpage")}>
           New Question
         </button>
       </div>

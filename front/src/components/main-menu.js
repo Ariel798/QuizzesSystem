@@ -41,7 +41,7 @@ export function MainMenu() {
             <p style={{ color: "white" }}>Quizzes</p>
             <button
               className="button"
-              onClick={() => navigate("./quizzesPage")}
+              onClick={() => navigate("./quizzespage")}
             >
               Go To
             </button>

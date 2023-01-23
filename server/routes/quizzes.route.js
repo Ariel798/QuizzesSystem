@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 
 router.get("/?:id", (req, res) => {
   const { id } = req.params;
-  loadQuiz(id).then(quiz=>res.send(quiz))
+  loadQuiz(id).then((quiz) => res.send(quiz));
 });
 
 router.get("/new", (req, res) => {
@@ -23,8 +23,8 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { quiz } = req.body;
-  addQuiz(quiz).then((data) => res.send(data));
+  const { body } = req;
+  addQuiz(body).then((data) => res.send(data));
 });
 
 router.delete("/?:id", (req, res) => {

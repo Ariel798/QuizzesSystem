@@ -45,7 +45,7 @@ const submittedQuizScheme = mongoose.Schema({
 const studentScheme = mongoose.Schema({
   fname: { type: String, required: true },
   lname: { type: String, required: true },
-  idNum: { type: Number, required: true },
+  email: { type: String, required: true },
   submittedQuizzes: [
     {
       type: mongoose.Schema.Types.ObjectId,

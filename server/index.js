@@ -12,6 +12,9 @@ mongoose.connect(path, (err) => {
     console.log(err);
   }
 });
+//TODO
+//Company
+
 // const question1 = new Question({
 //   number: null,
 //   subject: "development",
