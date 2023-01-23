@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Quiz } from "../../models/quiz";
 import { QuestionService } from "../../services/questionsService";
-import { QuizService } from "../../services/quizzesService";
+import { QuizzesService } from "../../services/quizzesService";
 const Step1 = ({ newQuiz, onChangeModel, onNextStep }) => (
   <div>
     <div>
@@ -126,7 +126,7 @@ const Results = ({ newQuiz, onReset, saveQuiz }) => (
 );
 export function NewQuizPage() {
   const quesService = QuestionService();
-  const quizzesService = QuizService();
+  const quizzesService = QuizzesService();
   const navigate = useNavigate();
   const [quesArr, setQuesArr] = useState([]);
   const [step, setStep] = useState(1);
@@ -165,7 +165,7 @@ export function NewQuizPage() {
   };
 
   useEffect(() => {
-    quesService.getQuestion().then((resList) => {
+    quesService.getQuestions().then((resList) => {
       setQuesList((pre) => {
         pre = [...resList];
         return pre;

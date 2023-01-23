@@ -5,6 +5,8 @@ import { QuizzesPage } from "./components/quizzes/quizzesPage";
 import {QuestionsPage} from "./components/Question/questionsPage";
 import {NewQuestionPage} from "./components/Question/createQuestion/newQuestionPage";
 import { NewQuizPage } from "./components/quizzes/newQuizPage";
+import {StudentQuiz} from "./components/Student/studentQuiz";
+
 function App() {
   return (
     <Router>
@@ -14,11 +16,10 @@ function App() {
         <Route path="/questionsPage" element={<QuestionsPage />} />
         {/* <Route path="/?:id" element={}></Route> */}
         <Route path="/newquestionpage" element={<NewQuestionPage />}>
-          new Question
         </Route>
         <Route path="/quizzespage/newquiz" element={<NewQuizPage />}>
-          new Question
         </Route>
+        <Route path="/studentquiz/:id" element={<StudentQuiz />}></Route>
       </Routes>
     </Router>
   );
