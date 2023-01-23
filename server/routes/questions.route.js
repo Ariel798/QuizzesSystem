@@ -48,7 +48,7 @@ router.delete("/:id", (req, res) => {
   }
 });
 
-router.put("/", (req, res) => {
+router.put("/:id", (req, res) => {
   const { question } = req.body;
   const updatedArr = editQuestion(question);
   res.send(updatedArr);
