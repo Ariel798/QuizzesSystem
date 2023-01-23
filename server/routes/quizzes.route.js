@@ -23,8 +23,9 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { quiz } = req.body;
-  addQuiz(quiz).then((data) => res.send(data));
+  const { body } = req;
+  addQuiz(body).then((data) => res.send(data));
+ console.log(body);
 });
 
 router.delete("/:id", (req, res) => {

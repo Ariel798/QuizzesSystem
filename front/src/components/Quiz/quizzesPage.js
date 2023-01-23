@@ -20,9 +20,23 @@ export function QuizzesPage() {
     fetchData();
   },[])
 
+  const linkClickHandler = (id) => {
+    let url = `http://localhost:3000/studentQuiz/${id}`;
+    navigator.clipboard.writeText(url);
+    alert("link Copy!")
+  };
 
+  async function deleteData(_id) {
+    if (window.confirm('Are you sure?')){
+      const arr = await service.deleteQuiz(_id);
+      setQuizzes(arr);
+    }
+  }
 
-
+  async function showData(_id) {
+    const question = await service.showQuiz(_id);
+    alert(JSON.stringify(question));
+  }
 
   return (
     <div>
@@ -53,23 +67,26 @@ export function QuizzesPage() {
           <th>Id</th>
           <th>Link</th>
           <th>Test Name</th>
+          <th>subject</th>
           <th>number of question</th>
-          <th>Last update</th>
-          <th>Type</th>
           <th>function</th>
         </tr>
         {quizzes?.map((item, key) => {
           // _id, number, subject, body, answers, correctAnswer, quizzes
+          //  name: String,
+  // subject: String,
+  // questions:
           return (
             <tr key={key}>
               <td>{item._id}</td>
+              <td><button onClick={() => linkClickHandler(item._id)} >Link</button></td>
               <td>{item.name}</td>
               <td>{item.subject}</td>
               <td>{item.questions}</td>
               <td>
-                <button className="btn btn-success">show</button> 
-                <button  className="btn btn-success">edit</button> 
-                <button className="btn btn-danger">delete</button>
+                <button onClick={() => showData(item._id)} className="btn btn-success">Show</button> 
+                <button  className="btn btn-success">Edit</button> 
+                <button onClick={() => deleteData(item._id)} className="btn btn-danger">Delete</button>
               </td>
             </tr>
           )

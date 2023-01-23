@@ -12,7 +12,6 @@ export function QuestionsPage() {
 
   async function deleteData(_id) {
     if (window.confirm('Are you sure?')){
-
       const arr = await service.deleteQuestion(_id);
       setQuestions(arr);
     }
@@ -44,6 +43,7 @@ export function QuestionsPage() {
     }
     fetchData();
   },[])
+
 
   return (
     <div>

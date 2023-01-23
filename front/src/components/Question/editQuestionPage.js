@@ -12,10 +12,10 @@ export function EditQuestionPage(props) {
     // _id, number, subject, body, answers, correctAnswer, quizzes
 
 
-    async function editQuestion(question) {
-        const editQuestion = await service.editQuestion(question);
+    async function editQuestion(_id) {
+        const editQuestion = await service.editQuestion(_id);
         setQuestion(editQuestion);
-        // console.log(editQuestion)
+         console.log(editQuestion)
     }
 
     useEffect(() => {
@@ -34,12 +34,10 @@ export function EditQuestionPage(props) {
         <div>
             <h1>edit is here:</h1>
            
-            {question.answers?.map((item) => {
-                console.log(question.answers);
+            {question.answers?.map((item, key) => {
                 return(
-                    <div>
-                    {/* <h1>here</h1> */}
-                    {/* <span> Answer: </span><input type="text" value={item.body} onChange={(e) => setQuestion(e.target.value)}></input><input type="radio" ></input> */}
+                    <div key={key}>
+              
                     <span> Answer: </span><input type="text" value={item.answers} onChange={(e) => setQuestion(e.target.value)}></input><input type="radio" ></input>
                 </div>
                 );

@@ -5,7 +5,7 @@ const { Student } = require("../../schemes/models");
 const checkAddStudent = async (student) => {
   try {
     const studentModel = new Student(student);
-    const data = await Student.findOne({ idNum: student.idNum });
+    const data = await Student.findOne({ email: student.email });
     if (data) {
       return data;
     } else {

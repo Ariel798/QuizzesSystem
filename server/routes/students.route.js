@@ -16,10 +16,8 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { student } = req.body;
-  checkAddStudent(student).then((data) => res.send(data));
-
-  //.then((data) => res.send(data));
+  const { body } = req;
+  checkAddStudent(body).then((data) => res.send(data));
 });
 
 module.exports = router;
