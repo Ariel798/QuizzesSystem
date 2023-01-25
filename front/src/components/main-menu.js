@@ -2,16 +2,16 @@ import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LoginService } from "../services/loginService";
-import Video from "../asset/main2.mp4"
-import "./main-menu.css"
+import Video from "../asset/main2.mp4";
+import "./main-menu.css";
 
 export function MainMenu() {
   const navigate = useNavigate();
   const loginService = LoginService();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-
   const [user, setUser] = useState(null);
+
   useEffect(() => {
     const token = localStorage.getItem("ADMIN-ID");
     loginService.getUserById(token).then((user) => setUser(user));
@@ -34,17 +34,15 @@ export function MainMenu() {
   };
   return (
     <div>
-
       {user ? (
         <div className="main">
-          <video src={Video} autoPlay loop muted />
           <div className="overlay">
             <div className="content">
-
-
               <h1 className="head">Welcome {user.userName}!</h1>
               <div style={{ marginBottom: "3rem" }}>
-                <button className='submit-btn' onClick={() => logOut()}>Log Out</button>
+                <button className="submit-btn" onClick={() => logOut()}>
+                  Log Out
+                </button>
               </div>
               <div className="main-menuDiv">
                 <p style={{ color: "white" }}>Quizzes</p>
@@ -75,9 +73,7 @@ export function MainMenu() {
         </div>
       ) : (
         <div className="main">
-          <video src={Video} autoPlay loop muted />
           <div className="overlay">
-
             <div className="content">
               <h1 className="head">Login</h1>
               <input
@@ -93,10 +89,11 @@ export function MainMenu() {
                 placeholder="Password"
                 required
               />
-              <button className='submit-btn' onClick={login}>Login</button>
+              <button className="submit-btn" onClick={login}>
+                Login
+              </button>
             </div>
           </div>
-
         </div>
       )}
     </div>

@@ -1,14 +1,11 @@
 import "./quizzesPage.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-// import { QuizzesService } from "../../services/quizzesService";
 import { QuizzesService } from "../../services/quizzesService";
 
 export function QuizzesPage() {
   const [quizzes, setQuizzes] = useState([]);
-
   const service = QuizzesService();
-
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +18,7 @@ export function QuizzesPage() {
   }, []);
 
   const linkClickHandler = (id) => {
-    let url = `http://localhost:3000/studentQuiz/${id}`;
+    let url = "http://localhost:3000/studentquiz/"+id;
     navigator.clipboard.writeText(url);
     alert("link Copy!");
   };

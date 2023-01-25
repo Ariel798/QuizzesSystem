@@ -20,6 +20,10 @@ const getStudents = () => {
   return Student.find({});
 };
 
+const getStudentById = (id) => {
+  return Student.findById(id);
+};
+
 const getStudentQuizzes = (id) => {
   return Student.find({ _id: id }).populate("submittedQuizzes");
 };
@@ -27,5 +31,6 @@ const getStudentQuizzes = (id) => {
 module.exports = {
   checkAddStudent,
   getStudents,
+  getStudentById,
   getStudentQuizzes,
 };
