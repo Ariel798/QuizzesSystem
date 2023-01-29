@@ -5,6 +5,7 @@ const {
   getStudents,
   getStudentById,
   getStudentQuizzes,
+  postSubmittedQuiz
 } = require("../dal/mongo/studentsContext");
 
 router.get("/", (req, res) => {
@@ -22,6 +23,10 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const { body } = req;
   checkAddStudent(body).then((data) => res.send(data));
+});
+router.post("/postquiz", (req, res) => {
+  const { body } = req;
+  postSubmittedQuiz(body).then((data) => res.send(data));
 });
 
 module.exports = router;

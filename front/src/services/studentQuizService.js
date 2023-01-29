@@ -40,11 +40,23 @@ export function StudentQuizService() {
     }
   };
 
-  //
+  const postSubmittedQuiz = async (subQuiz) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/students/postquiz",
+        JSON.stringify(subQuiz),
+        { headers: { "Content-Type": "application/json" } }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return {
     getStudents,
     getStudentById,
     getStudentQuizzes,
     checkAddStudent,
+    postSubmittedQuiz,
   };
 }

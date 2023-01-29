@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const { checkSubmittedQuiz } = require("../../bl/quizLogic");
 mongoose.set("strictQuery", true);
-const { Student } = require("../../schemes/models");
+const { Student, SubmittedQuiz } = require("../../schemes/models");
 
 const checkAddStudent = async (student) => {
   try {
@@ -28,9 +29,24 @@ const getStudentQuizzes = (id) => {
   return Student.find({ _id: id }).populate("submittedQuizzes");
 };
 
+const postSubmittedQuiz = async (subQuiz) => {
+  try {
+    const subQuizModel = new SubmittedQuiz(subQuiz);
+    const data = await subQuizModel.save();
+    if (data) {
+      const subQuiz = await data.populate("quizId");
+      await subQuiz.quizId.populate("questions");
+      checkSubmittedQuiz(data);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   checkAddStudent,
   getStudents,
   getStudentById,
   getStudentQuizzes,
+  postSubmittedQuiz,
 };

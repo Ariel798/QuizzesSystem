@@ -34,7 +34,7 @@ export function NewQuestionPage() {
 
   const saveAnsModel = () => {
     let tmp = { ...quesModel };
-    tmp["answers"] = { ...answersArr };
+    tmp["answers"] = [...answersArr];
     setQuesModel(tmp);
     postQuestion(tmp).then(() => {
       navigate("../questionsPage");
