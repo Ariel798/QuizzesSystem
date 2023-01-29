@@ -66,7 +66,7 @@ export function MainMenu() {
               </div>
               <div className="main-menuDiv">
                 <p style={{ color: "white" }}>Reports</p>
-                <button className="button" onClick={() => navigate("./")}>
+                <button className="button" onClick={() => navigate("./reportsPage")}>
                   Go To
                 </button>
               </div>

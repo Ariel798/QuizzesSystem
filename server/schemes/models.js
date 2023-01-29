@@ -70,7 +70,8 @@ const submittedQuizScheme = mongoose.Schema({
     ref: "Student",
   },
   grade: { type: Number, min: 0, max: 100 },
-  date: { type: Date },
+  date: { type: String },
+  nameOfQuiz: { type: String},
   passed: Boolean,
   answers: Array,
 

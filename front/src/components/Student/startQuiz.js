@@ -9,7 +9,6 @@ export function StartQuiz() {
     const service = StudentQuizService();
     const [newStudent, setStudent] = useState(StudentModel)
 
-
     useEffect(() => {
         async function fetchData() {
             const arr = await service.getStudents();
@@ -18,10 +17,6 @@ export function StartQuiz() {
         }
         fetchData();
     }, [])
-
-    // const back = () =>{
-    //     window.location.href = history.back
-    // } 
 
     return (
         <div>

@@ -31,7 +31,6 @@ export function StudentQuizService() {
         }
     }
 
-//
     return {
         getStudents,
         getStudentQuizzes,

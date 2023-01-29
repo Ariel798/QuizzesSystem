@@ -6,6 +6,10 @@ const getSubmittedQuizzes = () => {
   return SubmittedQuiz.find({});
 };
 
+const getAllSubmittedQuiz = (_id) => {
+  return SubmittedQuiz.find({quizId: _id});
+};
+
 const addSubmittedQuiz = async (subQuiz) => {
   const subQuizModel = new SubmittedQuiz(subQuiz);
   return await subQuizModel.save();
@@ -13,5 +17,6 @@ const addSubmittedQuiz = async (subQuiz) => {
 
 module.exports = {
   getSubmittedQuizzes,
+  getAllSubmittedQuiz,
   addSubmittedQuiz,
 };

@@ -6,20 +6,28 @@ import {QuestionsPage} from "./components/Question/questionsPage";
 import {NewQuestionPage} from "./components/Question/createQuestion/newQuestionPage";
 import { NewQuizPage } from "./components/quizzes/newQuizPage";
 import {StudentQuiz} from "./components/Student/studentQuiz";
+import { ReportsPage} from "./components/Report/reportsPage";
+import {ReportByStudent} from "./components/Report/reportByStudent";
+import {ReportByQuiz} from "./components/Report/reportByQuiz";
+import {ShowReportStudent} from "./components/Report/showReportStudent";
+import {ShowReportQuiz} from "./components/Report/showReportQuiz";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MainMenu />} />
-        <Route path="/quizzespage" element={<QuizzesPage />} />
-        <Route path="/questionsPage" element={<QuestionsPage />} />
+        <Route path="/" element={<MainMenu/>} />
+        <Route path="/quizzespage" element={<QuizzesPage />}/>
+        <Route path="/questionsPage" element={<QuestionsPage/>} />
         {/* <Route path="/?:id" element={}></Route> */}
-        <Route path="/newquestionpage" element={<NewQuestionPage />}>
-        </Route>
-        <Route path="/quizzespage/newquiz" element={<NewQuizPage />}>
-        </Route>
-        <Route path="/studentquiz/:id" element={<StudentQuiz />}></Route>
+        <Route path="/newquestionpage" element={<NewQuestionPage/>}></Route>
+        <Route path="/quizzespage/newquiz" element={<NewQuizPage/>}></Route>
+        <Route path="/studentquiz/:id" element={<StudentQuiz/>}></Route>
+        <Route path="/reportsPage" element={<ReportsPage/>}></Route>
+        <Route path="/reportByStudent" element={<ReportByStudent/>}></Route>
+        <Route path="/reportByQuiz" element={<ReportByQuiz/>}></Route>
+        <Route path="/ShowReportStudent/:id" element={<ShowReportStudent/>}></Route>
+        <Route path="/showReportQuiz/:id" element={<ShowReportQuiz/>}></Route>
       </Routes>
     </Router>
   );

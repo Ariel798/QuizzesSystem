@@ -6,6 +6,7 @@ import { QuizzesService } from "../../services/quizzesService";
 
 export function QuizzesPage() {
   const  [quizzes, setQuizzes] = useState([]);
+  const [search, setSearch] =useState('')
 
   const service = QuizzesService();
 
@@ -48,12 +49,10 @@ export function QuizzesPage() {
         <button className="btnNav" onClick={() => navigate("../")}>Home</button>
       </div>
       <div>
-      <form class="d-flex">
-        <input className="form-control me-2" type="text" placeholder="Search..."></input>
-        <button className="btn btn-primary" type="button">Search</button>
-      </form>
+      <form>
+          <input type="text" placeholder="search by name..." onChange={(e) => setSearch(e.target.value)}></input>
+        </form>
 
-      <input type='text'  placeholder='Search' />
       <h1>QuizzesPage</h1>
       <div style={{ display: "flex", display: "inline-block" }}>
         <button onClick={() => navigate("/quizzespage/newquiz")}>Generate New</button>
@@ -64,6 +63,8 @@ export function QuizzesPage() {
      
     
       <table className="table table-striped">
+        <tbody>
+
         <tr>
           <th>Id</th>
           <th>Link</th>
@@ -72,7 +73,11 @@ export function QuizzesPage() {
           <th>number of question</th>
           <th>function</th>
         </tr>
-        {quizzes?.map((item, key) => {
+        {quizzes.filter((item) => {
+            return search.toLowerCase() === ''
+              ? item
+              : item.name.toLowerCase().includes(search);
+          })?.map((item, key) => {
           // _id, number, subject, body, answers, correctAnswer, quizzes
           //  name: String,
   // subject: String,
@@ -92,6 +97,8 @@ export function QuizzesPage() {
             </tr>
           )
         })}
+        </tbody>
+
       </table>
 
      

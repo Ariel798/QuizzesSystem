@@ -1,17 +1,19 @@
-import React, { useEffect , useState} from "react";
-import { useNavigate, useParams  } from "react-router-dom";
-import {QuestionService} from "../../services/questionsService";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { QuestionService } from "../../services/questionsService";
 import "./questionsPage.css";
 
 export function QuestionsPage() {
-  const  [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [search, setSearch] = useState('')
+
 
   const service = QuestionService();
 
   let navigate = useNavigate();
 
   async function deleteData(_id) {
-    if (window.confirm('Are you sure?')){
+    if (window.confirm('Are you sure?')) {
       const arr = await service.deleteQuestion(_id);
       setQuestions(arr);
     }
@@ -32,17 +34,17 @@ export function QuestionsPage() {
   //   navigate('/Players', {
   //     userId: id,
   //   });
-   
+
   // };
 
 
-  useEffect(()=>{
+  useEffect(() => {
     async function fetchData() {
       const arr = await service.getQuestions();
       setQuestions(arr);
     }
     fetchData();
-  },[])
+  }, [])
 
 
   return (
@@ -51,10 +53,9 @@ export function QuestionsPage() {
         <button className="btnNav" onClick={() => navigate("../")}>Home</button>
       </div>
       <div>
-      <form className="d-flex">
-        <input className="form-control me-2" type="text" placeholder="Search..." ></input>
-        <button className="btn btn-primary" type="button">Search</button>
-      </form>
+        <form>
+          <input type="text" placeholder="search by text..." onChange={(e) => setSearch(e.target.value)}></input>
+        </form>
 
 
       </div>
@@ -63,38 +64,42 @@ export function QuestionsPage() {
       <div>
         <button onClick={() => navigate("/newQuestionPage")}>New Question</button>
       </div>
-    
+
       <table className="table table-striped">
         <tbody>
 
-       
-        <tr>
-          <th>Id</th>
-          <th>question text</th>
-          <th>last update</th>
-          <th>question type</th>
-          <th>function</th>
-        </tr>
-        {questions?.map((item, key) => {
-          // _id, number, subject, body, answers, correctAnswer, quizzes
-          return (
-            <tr key={key}>
-              <td>{item._id}</td>
-              <td>{item.body}</td>
-              <td>{item.date}</td>
-              <td>{item.type}</td>
-              <td>
-                <button className="btn btn-success" onClick={() => showData(item._id)}>show</button> 
-                <button  className="btn btn-success" onClick={() => navigate(`/editQuestionPage/${item._id}`)}>edit</button> 
-                <button onClick={() => deleteData(item._id)} className="btn btn-danger">delete</button>
-              </td>
-            </tr>
-          )
-        })}
-         </tbody>
+
+          <tr>
+            <th>Id</th>
+            <th>question text</th>
+            <th>last update</th>
+            <th>question type</th>
+            <th>function</th>
+          </tr>
+          {questions.filter((item) => {
+            return search.toLowerCase() === ''
+              ? item
+              : item.body.toLowerCase().includes(search);
+          })?.map((item, key) => {
+            // _id, number, subject, body, answers, correctAnswer, quizzes
+            return (
+              <tr key={key}>
+                <td>{item._id}</td>
+                <td>{item.body}</td>
+                <td>{item.date}</td>
+                <td>{item.type}</td>
+                <td>
+                  <button className="btn btn-success" onClick={() => showData(item._id)}>show</button>
+                  <button className="btn btn-success" onClick={() => navigate(`/editQuestionPage/${item._id}`)}>edit</button>
+                  <button onClick={() => deleteData(item._id)} className="btn btn-danger">delete</button>
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
       </table>
 
-     
+
     </div>
   );
 }
