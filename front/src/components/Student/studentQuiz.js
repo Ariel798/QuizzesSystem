@@ -4,7 +4,7 @@ import { StudentQuizService } from "../../services/studentQuizService";
 import { StudentModel } from "../../models/student";
 
 export function StudentQuiz() {
-  let { id } = useParams();
+  let { quizid } = useParams();
 
   const service = StudentQuizService();
 
@@ -12,6 +12,15 @@ export function StudentQuiz() {
 
   let navigate = useNavigate();
   useEffect(() => {}, []);
+
+  // useEffect(()=>{
+  //     async function fetchData() {
+  //       const arr = await service.getQuizzes();
+  //       setQuizzes(arr);
+  //       console.log(arr);
+  //     }
+  //     fetchData();
+  //   },[])
 
   async function saveDataStudent() {
     const arr = await service.getStudents();
@@ -22,30 +31,26 @@ export function StudentQuiz() {
     let tmp = { ...newStudent };
     tmp[e.target.name] = e.target.value;
     setStudent(tmp);
-    console.log(tmp);
   };
 
   const saveStudentModel = () => {
     let tmp = { ...newStudent };
     setStudent(tmp);
     postStudent(tmp).then((resp) => {
-      console.log(resp);
-      // navigate("../questionsPage");
+      navigate("/startquiz/" + quizid + "/" + resp._id);
     });
-
-    navigate("/startQuiz");
   };
 
   async function postStudent(student) {
-    await service.checkAddStudent(student);
+    return await service.checkAddStudent(student);
   }
 
   return (
     <div>
-      <h1>hello! Sign Up Quiz</h1>
+      <h1 className="headline">Fill Contact Details</h1>
       <div>
         <div>
-          first name
+          First Name
           <input
             type="text"
             value={newStudent.fname}
@@ -56,7 +61,7 @@ export function StudentQuiz() {
         </div>
 
         <div>
-          last name
+          Last Name
           <input
             value={newStudent.lname}
             onChange={changeModel}

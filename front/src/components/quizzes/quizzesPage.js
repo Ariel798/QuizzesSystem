@@ -10,7 +10,6 @@ export function QuizzesPage() {
   const [search, setSearch] = useState("");
 
   const service = QuizzesService();
-
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -19,10 +18,10 @@ export function QuizzesPage() {
       setQuizzes(arr);
     }
     fetchData();
-  }, []);
+  },  []);;
 
-  const linkClickHandler = (id) => {
-    let url = `http://localhost:3000/studentQuiz/${id}`;
+  const linkClickHandler = (item) => {
+    let url = "http://localhost:3000/studentquiz/" + item._id;
     navigator.clipboard.writeText(url);
     alert("link Copy!");
   };

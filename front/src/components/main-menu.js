@@ -11,8 +11,8 @@ export function MainMenu() {
   const loginService = LoginService();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-
   const [user, setUser] = useState(null);
+
   useEffect(() => {
     const token = localStorage.getItem("ADMIN-ID");
     loginService.getUserById(token).then((user) => setUser(user));

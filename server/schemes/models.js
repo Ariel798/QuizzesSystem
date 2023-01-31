@@ -39,6 +39,7 @@ const submittedQuizScheme = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Student",
   },
+  nameOfQuiz: { type: String },
   grade: { type: Number, min: 0, max: 100 },
   date: { type: String },
   nameOfQuiz: { type: String },

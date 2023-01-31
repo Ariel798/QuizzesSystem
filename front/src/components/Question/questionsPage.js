@@ -45,7 +45,9 @@ export function QuestionsPage() {
       <h1>Questions</h1>
       <div>
         <button onClick={() => navigate("/newQuestionPage")}>
+          
           New Question
+        
         </button>
       </div>
 

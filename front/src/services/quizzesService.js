@@ -10,14 +10,14 @@ export function QuizzesService() {
     }
   };
 
-  // const QuizBySubject = async () => {
-  //   try {
-  //     const response = await axios.get("http://localhost:3001/quizzes/filter");
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const loadQuiz = async (id) => {
+    try {
+      const response = await axios.get("http://localhost:3001/quizzes/" + id);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const addQuiz = async (quiz) => {
     try {
@@ -54,6 +54,7 @@ export function QuizzesService() {
 
   return {
     getQuizzes,
+    loadQuiz,
     addQuiz,
     deleteQuiz,
     editQuiz,
