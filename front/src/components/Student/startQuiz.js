@@ -6,7 +6,6 @@ import { StudentQuizService } from "../../services/studentQuizService";
 import { SubQuiz } from "../../models/subQuiz";
 
 export function StartQuiz() {
-  //Push with answerNum and its value
   const [userAnswers, setuserAnswers] = useState([]);
   const [quesNum, setQuesNum] = useState(0);
   const [subQuiz, setSubQuiz] = useState({ SubQuiz });

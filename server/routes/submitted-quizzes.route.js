@@ -4,15 +4,15 @@ const {
   getSubmittedQuizzes,
   addSubmittedQuiz,
 } = require("../dal/mongo/submittedQuizzesContext");
+const { checkSubmittedQuiz } = require("../bl/quizLogic");
 
 router.get("/", (req, res) => {
   getSubmittedQuizzes().then((data) => res.send(data));
 });
 
 router.post("/", (req, res) => {
-  const { quiz } = req.body;
-  addSubmittedQuiz(quiz).then((data) => res.send(data));
+  const { body } = req;
+  addSubmittedQuiz(body).then((data) => res.send(data));
 });
-//Run through submitted quizzes and check (Client ?)
 
 module.exports = router;

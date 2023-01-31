@@ -12,28 +12,6 @@ mongoose.connect(path, (err) => {
     console.log(err);
   }
 });
-//TODO
-//Company
-
-// const question1 = new Question({
-//   number: null,
-//   subject: "development",
-//   body: "What is ?",
-//   answers: [],
-//   correctAnswer: 1,
-// });
-
-// const quiz1 = new Quiz({
-//   subject: "Development",
-//   authorId: "Teacher",
-//   questions: [question1],
-// });
-
-// question1.save();
-// quiz1.save();
-
-// const admin1 = new Admin({ userName: "Mr.President", password: "A" });
-// admin1.save();
 const app = express();
 
 app.use(express.json());

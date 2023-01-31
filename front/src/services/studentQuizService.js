@@ -43,7 +43,7 @@ export function StudentQuizService() {
   const postSubmittedQuiz = async (subQuiz) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/students/postquiz",
+        "http://localhost:3001/submittedquizzes",
         JSON.stringify(subQuiz),
         { headers: { "Content-Type": "application/json" } }
       );
