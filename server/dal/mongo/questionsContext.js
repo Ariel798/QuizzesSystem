@@ -5,6 +5,7 @@ mongoose.set("strictQuery", true);
 const getQuestions = async () => {
   return Question.find({});
 };
+
 const getQuestion = async (id) => {
   return Question.findById(id);
 };

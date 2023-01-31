@@ -1,11 +1,3 @@
-// const {
-//   getQuestions,
-//   addQuestion,
-//   deleteQuestion,
-//   editQuestion,
-//   filterQuestions,
-// } = require("../dal/fs/questions");
-
 const {
   getQuestions,
   getQuestion,

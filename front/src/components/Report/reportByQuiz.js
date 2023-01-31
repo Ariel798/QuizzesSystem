@@ -5,77 +5,75 @@ import { QuizzesService } from "../../services/quizzesService";
 import { StudentQuizService } from "../../services/studentQuizService";
 import { SubmittedQuizService } from "../../services/submittedQuizService";
 
-
-
-
 export function ReportByQuiz() {
-    // const [step, setStep] = useState(1);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const quizzesService = QuizzesService();
+  const submittedQuizService = SubmittedQuizService();
+  const [dataQuiz, setDataQuiz] = useState([Quiz]);
+  const [quizId, setQuizId] = useState();
 
-    const quizzesService = QuizzesService();
-    const studentQuizService = StudentQuizService();
-    const submittedQuizService = SubmittedQuizService();
+  const detailsOfReport = (_id) => {
+    navigate(`/showReportQuiz/${_id}`);
+  };
 
-    const [dataQuiz, setDataQuiz] = useState([Quiz]);
-    const [options, setOptions] = useState()
+  const updateQuizIdState = (value) => {
+    setQuizId((pre) => {
+      pre = value;
+      return pre;
+    });
+  };
 
+  useEffect(() => {
+    quizzesService.getQuizzes().then((resList) => {
+      setDataQuiz((pre) => {
+        pre = [...resList];
+        return pre;
+      });
+    });
+  }, []);
 
-
-    // const onNextStep = () => {
-    //     setStep(step + 1);
-    // };
-    // const onPrevStep = () => setStep((pre) => pre - 1);
-
-
-    useEffect(() => {
-        quizzesService.getQuizzes().then((resList) => {
-            setDataQuiz((pre) => {
-                pre = [...resList];
-                return pre;
-            });
-        });
-    }, []);
-
-    return (
+  return (
+    <div>
+      <div>
+        select test:
         <div>
-            <div>
-                <div className="topnav">
-                    <button className="btnNav" onClick={() => navigate("../")}>Home</button>
-                </div>
-                select test:
-                <div>
-                    <select onChange={(e) => setOptions(e.target.value)}>
-                        <option defaultValue="" disabled>
-                            Select one
-                        </option>
-                        {dataQuiz.map((item, key) => {
-                            return (
-                                <option key={key} >{item.name}</option>
-                            );
-                        })}
-                    </select>
-                    <div>
-                        <span>test select:<h1>{options}</h1></span>
-                    </div>
-                </div>
-
-                <div>
-                    Date Range:
-                    from: <input type="date" style={{ width: "170px" }}></input>
-                    to: <input type="date" style={{ width: "170px" }}></input>
-                </div>
-                or < div >
-                    <input type="checkbox"></input> any date in the past
-                </div >
-                <button
-                    style={{ marginTop: "30px" }}
-                    type="button"
-                    className="button"
-                // onClick={onNextStep}
-                >
-                    Next
-                </button>
-            </div>
+          <select
+            defaultValue=""
+            onChange={(e) => updateQuizIdState(e.target.value)}
+          >
+            <option value="" disabled>
+              Select one
+            </option>
+            {dataQuiz.map((item, key) => {
+              return (
+                <option value={item._id} key={key}>
+                  {item.name}
+                </option>
+              );
+            })}
+          </select>
+          <div>
+            <button
+              style={{ marginTop: "30px" }}
+              type="button"
+              className="button"
+              onClick={() => detailsOfReport(quizId)}
+            >
+              Next
+            </button>
+          </div>
+          <div></div>
         </div>
-    );
+        <div>
+          Date Range: from:{" "}
+          <input type="date" style={{ width: "170px" }}></input>
+          to: <input type="date" style={{ width: "170px" }}></input>
+        </div>
+        or{" "}
+        <div>
+          <input type="checkbox"></input> any date in the past
+        </div>
+      </div>
+    </div>
+  );
 }

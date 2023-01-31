@@ -8,7 +8,6 @@ const getQuizzes = async () => {
 
 const loadQuiz = async (id) => {
   const quiz = await Quiz.findById(id);
-
   await quiz.populate("questions");
   return quiz;
 };

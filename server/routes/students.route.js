@@ -23,8 +23,8 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const {body} = req;
+  const { body } = req;
   findAndUpdateStudent(id, body).then((data) => res.send(data));
-})
+});
 
 module.exports = router;

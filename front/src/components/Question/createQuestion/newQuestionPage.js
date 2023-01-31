@@ -48,9 +48,6 @@ export function NewQuestionPage() {
   return (
     <div>
       <div className="topnav">
-        <button className="btnNav" onClick={() => navigate("../")}>
-          Home
-        </button>
         <button className="btnNav" onClick={() => navigate("../questionsPage")}>
           Questions
         </button>

@@ -6,16 +6,10 @@ const adminScheme = mongoose.Schema({
 });
 const questionScheme = mongoose.Schema({
   number: Number,
-  //check why number
-//   topicId: mongoose.Schema.Types.ObjectId
-//   typeId: mongoose.Schema.Types.ObjectId
-
-  //add topic id 
   subject: String,
   body: String,
-  answers: Array, //[String]
-  //tags: Array, //[String]
-  correctAnswer: Number, //add correctAnswers  --> [String]
+  answers: Array,
+  correctAnswer: Number,
   quizzes: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -23,34 +17,11 @@ const questionScheme = mongoose.Schema({
     },
   ],
 });
-//add this Schema
-//add topic to almost each schema(need to check)
-
-// const topic = mongoose.Schema({
-//   name: String,
-//   companyId: mongoose.Schema.Types.ObjectId
-// })
-
-// const company = mongoose.Schema({
-//   name: String,
-// })
-
-// const type = mongoose.Schema({
-//   name: String,
-// })
 
 const quizScheme = mongoose.Schema({
   name: String,
   subject: String,
-  //language: String 
-  //type: String //random or predefine
 
-  //succeed:String
-  //failure:String
-
-  //isShowResults:Boolean
-
-  //change : questionsId
   questions: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -58,7 +29,6 @@ const quizScheme = mongoose.Schema({
     },
   ],
 });
-
 
 const submittedQuizScheme = mongoose.Schema({
   quizId: {
@@ -71,21 +41,15 @@ const submittedQuizScheme = mongoose.Schema({
   },
   grade: { type: Number, min: 0, max: 100 },
   date: { type: String },
-  nameOfQuiz: { type: String},
+  nameOfQuiz: { type: String },
   passed: Boolean,
   answers: Array,
-
-  //delete  wrongAnswers: Array, =>
   wrongAnswers: Array,
 });
-
 
 const studentScheme = mongoose.Schema({
   fname: { type: String, required: true },
   lname: { type: String, required: true },
-
-  //email need to be unique - 
-  //email send to student if success or fail
   email: { type: String, required: true },
   submittedQuizzes: [
     {

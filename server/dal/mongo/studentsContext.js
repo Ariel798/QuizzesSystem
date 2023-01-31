@@ -20,18 +20,17 @@ const getStudents = () => {
   return Student.find({});
 };
 
-//report func
 const getStudentQuizzes = (id) => {
   return Student.find({ _id: id }).populate("submittedQuizzes");
 };
 
 const findAndUpdateStudent = (id, body) => {
-  return Student.findOneAndReplace({ _id: id  },{...body})
+  return Student.findOneAndReplace({ _id: id }, { ...body });
 };
 
 module.exports = {
   checkAddStudent,
   getStudents,
   getStudentQuizzes,
-  findAndUpdateStudent
+  findAndUpdateStudent,
 };

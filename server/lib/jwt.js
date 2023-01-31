@@ -1,16 +1,16 @@
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 
-const secretJwt = 'asdasdasdasd';
+const secretJwt = "asdasdasdasd";
 
-const vertifyToken = (token,callback) =>{
-    jwt.verify(token,secretJwt,callback)
-}
+const vertifyToken = (token, callback) => {
+  jwt.verify(token, secretJwt, callback);
+};
 
-const createToken = (payload) =>{
-    return jwt.sign(payload,secretJwt)
-}
+const createToken = (payload) => {
+  return jwt.sign(payload, secretJwt);
+};
 
 module.exports = {
-    vertifyToken,
-    createToken
-}
+  vertifyToken,
+  createToken,
+};
