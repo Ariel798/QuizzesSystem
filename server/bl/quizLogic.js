@@ -8,7 +8,6 @@ function checkSubmittedQuiz(subQuiz) {
       Number(subQuiz.quizId.questions[quesNum].correctAnswer) ==
       subQuiz.answers[quesNum]
     ) {
-      continue;
     } else {
       wrongAnswersArr.push(Number(subQuiz.answers[quesNum]));
       grade -= errorWeight;

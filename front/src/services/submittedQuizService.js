@@ -22,22 +22,8 @@ export function SubmittedQuizService() {
     }
   };
 
-  const addSubmittedQuiz = async (subQuiz) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/submittedquizzes",
-        JSON.stringify(subQuiz),
-        { headers: { "Content-Type": "application/json" } }
-      );
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return {
     getSubmittedQuizzes,
-    addSubmittedQuiz,
     getAllSubmittedQuiz,
   };
 }

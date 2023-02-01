@@ -30,12 +30,7 @@ const addSubmittedQuiz = async (subQuiz) => {
       );
       await Student.findByIdAndUpdate(
         { _id: subQuiz.studentId },
-        { $push: { submittedQuizzes: subQuizModel._id } },
-        (err, docs) => {
-          if (err) {
-            console.log(err);
-          }
-        }
+        { $push: { submittedQuizzes: subQuizModel._id } }
       );
       return checkedQuiz;
     }
