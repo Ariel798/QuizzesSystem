@@ -18,7 +18,7 @@ export function QuizzesPage() {
       setQuizzes(arr);
     }
     fetchData();
-  },  []);;
+  }, []);
 
   const linkClickHandler = (item) => {
     let url = "http://localhost:3000/studentquiz/" + item._id;
@@ -85,7 +85,7 @@ export function QuizzesPage() {
                   <tr key={key}>
                     <td>{item._id}</td>
                     <td>
-                      <button onClick={() => linkClickHandler(item._id)}>
+                      <button onClick={() => linkClickHandler(item)}>
                         Link
                       </button>
                     </td>

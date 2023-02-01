@@ -17,7 +17,7 @@ function checkSubmittedQuiz(subQuiz) {
   }
   subQuiz.wrongAnswers = [...wrongAnswersArr];
   subQuiz["grade"] = Math.round(grade);
-  return { subQuiz };
+  return subQuiz;
 }
 
 module.exports = {

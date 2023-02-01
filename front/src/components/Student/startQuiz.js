@@ -6,15 +6,15 @@ import { StudentQuizService } from "../../services/studentQuizService";
 import { SubQuiz } from "../../models/subQuiz";
 
 export function StartQuiz() {
-const [userAnswers, setuserAnswers] = useState([]);
+  const [userAnswers, setuserAnswers] = useState([]);
   const [quesNum, setQuesNum] = useState(0);
   const [subQuiz, setSubQuiz] = useState({ SubQuiz });
   let [started, setStarted] = useState(false);
   let { quizid, studentid } = useParams();
-const { loadQuiz } = QuizzesService();
+  const { loadQuiz } = QuizzesService();
   const navigate = useNavigate();
   const { postSubmittedQuiz } = StudentQuizService();
-const [quiz, setQuiz] = useState(Quiz);;
+  const [quiz, setQuiz] = useState(Quiz);
   const startQuiz = () => {
     setStarted((pre) => {
       return !pre;
@@ -53,13 +53,16 @@ const [quiz, setQuiz] = useState(Quiz);;
       temp["nameOfQuiz"] = quiz.name;
       temp["date"] = new Date().toLocaleDateString("en-US");
       temp["quizId"] = quiz._id;
+      temp["studentId"] = studentid;
       setSubQuiz(temp);
       postSubmittedQuiz(temp).then(() => alert("Sent!"));
     }
   };
 
   useEffect(() => {
-    loadQuiz(quizid).then((resp) => setQuiz(resp));
+    loadQuiz(quizid).then((resp) => {
+      setQuiz(resp);
+    });
   }, []);
 
   return (
