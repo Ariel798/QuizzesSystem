@@ -40,7 +40,10 @@ router.delete("/:id", (req, res) => {
 
 router.put("/", (req, res) => {
   const { quiz } = req.body;
-  const updatedArr = editQuiz(quiz);
+  const parsed = JSON.parse(quiz);
+  const questionsFk = parsed?.questions?.map((item) => item._id);
+  parsed["questions"] = [...questionsFk];
+  const updatedArr = editQuiz(parsed);
   res.send(updatedArr);
 });
 module.exports = router;

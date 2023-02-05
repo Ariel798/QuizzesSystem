@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { QuestionService } from "../../services/questionsService";
 import "./questionsPage.css";
 import { Navbar } from "../navbar";
+import { DetailsModal } from "../../ui-toolkit/detailsModal";
 
 export function QuestionsPage() {
   const [questions, setQuestions] = useState([]);
@@ -20,7 +21,6 @@ export function QuestionsPage() {
     const question = await service.showQuestion(_id);
     alert(JSON.stringify(question));
   }
-
   useEffect(() => {
     async function fetchData() {
       const arr = await service.getQuestions();
@@ -31,7 +31,7 @@ export function QuestionsPage() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div>
         <form>
           <input
@@ -45,9 +45,7 @@ export function QuestionsPage() {
       <h1>Questions</h1>
       <div>
         <button onClick={() => navigate("/newQuestionPage")}>
-          
           New Question
-        
         </button>
       </div>
 
@@ -56,7 +54,6 @@ export function QuestionsPage() {
           <tr>
             <th>Id</th>
             <th>question text</th>
-            <th>last update</th>
             <th>question type</th>
             <th>function</th>
           </tr>
@@ -71,15 +68,9 @@ export function QuestionsPage() {
                 <tr key={key}>
                   <td>{item._id}</td>
                   <td>{item.body}</td>
-                  <td>{item.date}</td>
                   <td>{item.type}</td>
                   <td>
-                    <button
-                      className="btn btn-success"
-                      onClick={() => showData(item._id)}
-                    >
-                      show
-                    </button>
+                    <DetailsModal item={item}></DetailsModal>
                     <button
                       className="btn btn-success"
                       onClick={() => navigate(`/editQuestionPage/${item._id}`)}

@@ -14,14 +14,19 @@ router.get("/", (req, res) => {
   getQuestions().then((questions) => res.send(questions));
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", (req, res, next) => {
   const { id } = req.params;
+  const { path } = req;
+  if (["/filter"].includes(path)) {
+    return next();
+  }
   getQuestion(id).then((question) => res.send(question));
 });
 
-router.get("/filter", (req, res) => {
+router.get("/filter", async (req, res) => {
   const { subject } = req.headers;
-  filterBySubject(subject).then((questions) => res.send(questions));
+  const questions = await filterBySubject(subject);
+  res.send(questions);
 });
 
 router.post("/", (req, res) => {

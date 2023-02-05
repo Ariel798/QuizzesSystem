@@ -17,7 +17,6 @@ export function EditQuestionPage(props) {
   useEffect(() => {
     async function getQuestion(id) {
       const obj = await service.showQuestion(id);
-      // console.log(obj);
       setQuestion(obj);
     }
     getQuestion(id);

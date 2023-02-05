@@ -5,14 +5,14 @@ import { QuizzesPage } from "./components/quizzes/quizzesPage";
 import { QuestionsPage } from "./components/Question/questionsPage";
 import { NewQuestionPage } from "./components/Question/createQuestion/newQuestionPage";
 import { NewQuizPage } from "./components/quizzes/newQuizPage";
-import {StudentQuiz} from "./components/Student/studentQuiz";
+import { StudentQuiz } from "./components/Student/studentQuiz";
 import { StartQuiz } from "./components/Student/startQuiz";
 import { ReportsPage } from "./components/Report/reportsPage";
 import { ReportByStudent } from "./components/Report/reportByStudent";
 import { ReportByQuiz } from "./components/Report/reportByQuiz";
 import { ShowReportStudent } from "./components/Report/showReportStudent";
 import { ShowReportQuiz } from "./components/Report/showReportQuiz";
-
+import { EditQuizPage } from "./components/quizzes/editQuizPage";
 
 function App() {
   return (
@@ -21,16 +21,14 @@ function App() {
         <Route path="/" element={<MainMenu />} />
         <Route path="/quizzespage" element={<QuizzesPage />} />
         <Route path="/questionsPage" element={<QuestionsPage />} />
-        <Route path="/newquestionpage" element={<NewQuestionPage />}>
-        </Route>
-        <Route path="/quizzespage/newquiz" element={<NewQuizPage />}>
-        </Route>
+        <Route path="/newquestionpage" element={<NewQuestionPage />}></Route>
+        <Route path="/quizzespage/newquiz" element={<NewQuizPage />}></Route>
         <Route path="/studentquiz/:quizid" element={<StudentQuiz />}></Route>
         <Route
           path="/startquiz/:quizid/:studentid"
           element={<StartQuiz />}
         ></Route>
-          <Route path="/reportsPage" element={<ReportsPage />}></Route>
+        <Route path="/reportsPage" element={<ReportsPage />}></Route>
         <Route path="/reportByStudent" element={<ReportByStudent />}></Route>
         <Route path="/reportByQuiz" element={<ReportByQuiz />}></Route>
         <Route
@@ -38,6 +36,7 @@ function App() {
           element={<ShowReportStudent />}
         ></Route>
         <Route path="/showReportQuiz/:id" element={<ShowReportQuiz />}></Route>
+        <Route path="/quizzespage/editquiz/:quizid" element ={<EditQuizPage></EditQuizPage>}></Route>
       </Routes>
     </Router>
   );
