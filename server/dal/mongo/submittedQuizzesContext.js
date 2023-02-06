@@ -1,4 +1,4 @@
-const { SubmittedQuiz, Student } = require("../../schemes/models");
+const { SubmittedQuiz, Student, Quiz } = require("../../schemes/models");
 const mongoose = require("mongoose");
 const { checkSubmittedQuiz } = require("../../bl/quizLogic");
 mongoose.set("strictQuery", true);
@@ -26,11 +26,17 @@ const addSubmittedQuiz = async (subQuiz) => {
           studentId: subQuiz.studentId,
           grade: checkedQuiz.grade,
           wrongAnswers: [...checkedQuiz.wrongAnswers],
+          passed: checkedQuiz.passed,
+          message: checkedQuiz.message,
         }
       );
       await Student.findByIdAndUpdate(
         { _id: subQuiz.studentId },
         { $push: { submittedQuizzes: subQuizModel._id } }
+      );
+      await Quiz.findByIdAndUpdate(
+        { _id: subQuiz.quizId._id },
+        { active: true }
       );
       return checkedQuiz;
     }
