@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { QuestionService } from "../../services/questionsService";
 import { useNavigate, useParams } from "react-router-dom";
+import { Navbar } from "../navbar";
 
-export function EditQuestionPage(props) {
+export function EditQuestionPage() {
   //use state
   const [question, setQuestion] = useState({});
   const service = QuestionService();
-  let { id } = useParams();
+  let { questionid } = useParams();
 
   async function editQuestion(_id) {
     const editQuestion = await service.editQuestion(_id);
     setQuestion(editQuestion);
-    console.log(editQuestion);
   }
 
   useEffect(() => {
@@ -19,17 +19,18 @@ export function EditQuestionPage(props) {
       const obj = await service.showQuestion(id);
       setQuestion(obj);
     }
-    getQuestion(id);
+    getQuestion(questionid);
   }, []);
 
   return (
     <div>
-      <h1>edit is here:</h1>
+      <Navbar />
+      <h1>{question.body}</h1>
 
       {question.answers?.map((item, key) => {
         return (
           <div key={key}>
-            <span> Answer: </span>
+            <span> Answer: {item}</span>
             <input
               type="text"
               value={item.answers}
@@ -46,16 +47,6 @@ export function EditQuestionPage(props) {
       >
         update
       </button>
-      {/* <span> Answer: </span><input type="text" ></input><input type="radio" ></input> */}
-
-      {/* <form >
-
-                <div><span> the question?: </span><input type="text"></input></div>
-                <div><span> Answer: </span><input type="text" value={question.answers} onChange={(e) => setQuestion(e.target.value)}></input><input type="radio" ></input></div>
-                <div><span> Answer: </span><input type="text" value={question.answers} onChange={(e) => setQuestion(e.target.value)}></input><input type="radio" ></input></div>
-                <div><span> Answer: </span><input type="text" value={question.answers} onChange={(e) => setQuestion(e.target.value)}></input><input type="radio" ></input></div>
-                <div><span> Answer: </span><input type="text" value={question.answers} onChange={(e) => setQuestion(e.target.value)}></input><input type="radio" ></input></div>
-            </form> */}
     </div>
   );
 }

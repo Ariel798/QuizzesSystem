@@ -70,8 +70,8 @@ export function QuizzesPage() {
               <th>Id</th>
               <th>Link</th>
               <th>Test Name</th>
-              <th>subject</th>
-              <th>function</th>
+              <th>Subject</th>
+              <th>Functions</th>
             </tr>
             {quizzes
               .filter((item) => {
@@ -84,26 +84,37 @@ export function QuizzesPage() {
                   <tr key={key}>
                     <td>{item._id}</td>
                     <td>
-                      <button onClick={() => linkClickHandler(item)}>
+                      <button
+                        style={{ width: "80px", textAlign: "center" }}
+                        onClick={() => linkClickHandler(item)}
+                      >
                         Link
                       </button>
                     </td>
                     <td>{item.name}</td>
                     <td>{item.subject}</td>
                     <td>
-                      <button
-                        onClick={() => showData(item)}
-                        className="btn btn-success"
+                      <div
+                        style={{ width: "80px", textAlign: "center" }}
+                        className={
+                          item.active ? "btn btn-success" : "btn btn-warning"
+                        }
                       >
-                        Show
-                      </button>
+                        {item.active ? "Active" : "Inactive"}
+                      </div>
                       <button
+                        style={{
+                          width: "80px",
+                          textAlign: "center",
+                          marginLeft: "2px",
+                        }}
                         className="btn btn-success"
                         onClick={() => editQuiz(item)}
                       >
                         Edit
                       </button>
                       <button
+                        style={{ width: "80px", textAlign: "center" }}
                         onClick={() => deleteData(item._id)}
                         className="btn btn-danger"
                       >

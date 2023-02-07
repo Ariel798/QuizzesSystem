@@ -34,7 +34,6 @@ export function QuestionService() {
 
   const addQuestion = async (question) => {
     try {
-      console.log(question);
       const response = await axios.post(
         "http://localhost:3001/questions",
         JSON.stringify(question),

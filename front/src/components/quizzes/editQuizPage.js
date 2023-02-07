@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { QuizzesService } from "../../services/quizzesService";
 import { QuestionService } from "../../services/questionsService";
+import { Navbar } from "../navbar";
 
 export function EditQuizPage() {
   const navigate = useNavigate();
@@ -83,19 +84,44 @@ export function EditQuizPage() {
   }, []);
   return (
     <div>
-      <div className="topnav">
-        <button className="btnNav" onClick={() => navigate("../quizzespage")}>
-          Back
-        </button>
-      </div>
+      <Navbar></Navbar>
       <div>
         <h1 className="headline">Edit Quiz</h1>
       </div>
-      <div>
+      <div style={{ display: "inline-block" }}>
         <p>Edit Name:</p>
         <input
           name="name"
           value={quiz.name || ""}
+          onChange={onChangeQuiz}
+        ></input>
+      </div>
+      <div style={{ display: "inline-block" }}>
+        <p>Edit Grade To Pass:</p>
+        <input
+          name="minGrade"
+          type="number"
+          value={quiz.minGrade}
+          onChange={onChangeQuiz}
+        ></input>
+      </div>
+      <div style={{ display: "inline-block" }}>
+        Edit <span style={{ color: "green" }}>Passed</span> Test Message:
+        <input
+          name="passedMessage"
+          type="text"
+          value={quiz.passedMessage}
+          onChange={onChangeQuiz}
+        ></input>
+      </div>
+      <div style={{ display: "inline-block" }}>
+        <p>
+          Edit <span style={{ color: "red" }}>Failed</span> Test Message:
+        </p>
+        <input
+          name="failedMessage"
+          type="text"
+          value={quiz.failedMessage}
           onChange={onChangeQuiz}
         ></input>
       </div>

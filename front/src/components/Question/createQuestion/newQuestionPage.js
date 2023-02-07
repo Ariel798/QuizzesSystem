@@ -36,9 +36,13 @@ export function NewQuestionPage() {
     let tmp = { ...quesModel };
     tmp["answers"] = [...answersArr];
     setQuesModel(tmp);
-    postQuestion(tmp).then(() => {
-      navigate("../questionsPage");
-    });
+    if (typeof tmp["correctAnswer"] !== "number") {
+      postQuestion(tmp).then(() => {
+        navigate("../questionsPage");
+      });
+    } else {
+      alert("Please select a correct answer!");
+    }
   };
 
   async function postQuestion(question) {
@@ -55,11 +59,12 @@ export function NewQuestionPage() {
       <h1>New Question</h1>
       <div>
         <h4>Subject</h4>
-        <input
-          name="subject"
-          value={quesModel.subject}
-          onChange={changeModel}
-        ></input>
+        <select name="subject" defaultValue="" onChange={changeModel}>
+          <option value="" disabled>
+            Select one
+          </option>
+          <option value="development">Development</option>
+        </select>
       </div>
       <div>
         <h4>Body of Question</h4>
@@ -76,7 +81,11 @@ export function NewQuestionPage() {
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
         ></input>
-        <button className="plusButton" onClick={() => addToAnswers()}>
+        <button
+          style={{ width: "50px" }}
+          className="plusButton"
+          onClick={() => addToAnswers()}
+        >
           +
         </button>
       </div>

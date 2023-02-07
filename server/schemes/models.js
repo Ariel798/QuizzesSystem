@@ -10,7 +10,8 @@ const questionScheme = mongoose.Schema({
   answers: Array,
   topic: String,
   multiAns: Boolean,
-  correctAnswer: Array,
+  correctAnswer: Number,
+  correctAnswersArr: Array,
   quizzes: [
     {
       type: mongoose.Schema.Types.ObjectId,

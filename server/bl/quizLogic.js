@@ -4,11 +4,12 @@ function checkSubmittedQuiz(subQuiz) {
   let quesNum = 0;
   let wrongAnswersArr = [];
   for (let question in subQuiz.quizId.questions) {
+    if (subQuiz.quizId.multiAns) {
+    }
     if (
-      Number(subQuiz.quizId.questions[quesNum].correctAnswer) ==
+      !Number(subQuiz.quizId.questions[quesNum].correctAnswer) ==
       subQuiz.answers[quesNum]
     ) {
-    } else {
       wrongAnswersArr.push(Number(subQuiz.answers[quesNum]));
       grade -= errorWeight;
     }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { StudentQuizService } from "../../services/studentQuizService";
 import { StudentModel } from "../../models/student";
+import { Navbar } from "../navbar";
 
 export function ShowReportStudent() {
   const studentQuizService = StudentQuizService();
@@ -19,6 +20,7 @@ export function ShowReportStudent() {
 
   return (
     <div>
+      <Navbar></Navbar>
       <div>
         quizzes of : <h1>{student.fname}</h1>
       </div>
@@ -29,6 +31,7 @@ export function ShowReportStudent() {
             <th>name of test</th>
             <th>grade</th>
             <th>date</th>
+            <th>status</th>
           </tr>
           {student.submittedQuizzes?.map((item, key) => {
             return (
@@ -36,6 +39,11 @@ export function ShowReportStudent() {
                 <td>{item.nameOfQuiz} </td>
                 <td>{item.grade}</td>
                 <td>{item.date}</td>
+                <td
+                  style={!item?.passed ? { color: "red" } : { color: "green" }}
+                >
+                  {!item?.passed ? "Failed" : "Passed"}
+                </td>
               </tr>
             );
           })}

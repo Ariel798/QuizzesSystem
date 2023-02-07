@@ -1,11 +1,6 @@
 import { useState } from "react";
 import Popup from "./popUp";
 export function DetailsModal(props) {
-  const [showDetails, setShowDetails] = useState(false);
-  const toggleShowEditor = () => {
-    console.log("here");
-    setShowDetails(!showDetails);
-  };
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePopup = () => {

@@ -73,15 +73,15 @@ export function QuestionsPage() {
                     <DetailsModal item={item}></DetailsModal>
                     <button
                       className="btn btn-success"
-                      onClick={() => navigate(`/editQuestionPage/${item._id}`)}
+                      onClick={() => navigate(`/editquestionpage/${item._id}`)}
                     >
-                      edit
+                      Edit
                     </button>
                     <button
                       onClick={() => deleteData(item._id)}
                       className="btn btn-danger"
                     >
-                      delete
+                      Delete
                     </button>
                   </td>
                 </tr>

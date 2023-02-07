@@ -13,6 +13,7 @@ import { ReportByQuiz } from "./components/Report/reportByQuiz";
 import { ShowReportStudent } from "./components/Report/showReportStudent";
 import { ShowReportQuiz } from "./components/Report/showReportQuiz";
 import { EditQuizPage } from "./components/quizzes/editQuizPage";
+import { EditQuestionPage } from "./components/Question/editQuestionPage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         ></Route>
         <Route path="/showReportQuiz/:id" element={<ShowReportQuiz />}></Route>
         <Route path="/quizzespage/editquiz/:quizid" element ={<EditQuizPage></EditQuizPage>}></Route>
+        <Route path="/editquestionpage/:questionid" element ={<EditQuestionPage></EditQuestionPage>}></Route>
       </Routes>
     </Router>
   );
