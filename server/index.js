@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+//
+
 const { vertifyToken } = require("./lib/jwt");
 const path =
   "mongodb+srv://Liorko310799:310799@mernlior.og9x762.mongodb.net/MernLior?retryWrites=true&w=majority";
@@ -41,6 +43,7 @@ app.use("/login", require("./routes/login-route"));
 app.use("/questions", require("./routes/questions.route"));
 app.use("/quizzes", require("./routes/quizzes.route"));
 app.use("/submittedquizzes", require("./routes/submitted-quizzes.route"));
+//
 
 app.listen(3001, (err) => {
   if (err) console.log(err);

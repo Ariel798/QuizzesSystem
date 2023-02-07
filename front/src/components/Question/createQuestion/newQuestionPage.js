@@ -58,6 +58,7 @@ export function NewQuestionPage() {
         <input
           name="subject"
           value={quesModel.subject}
+          disabled
           onChange={changeModel}
         ></input>
       </div>

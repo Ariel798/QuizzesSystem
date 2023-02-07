@@ -29,7 +29,6 @@ const getStudentQuizzes = (id) => {
   return Student.find({ _id: id }).populate("submittedQuizzes");
 };
 
-
 module.exports = {
   checkAddStudent,
   getStudents,

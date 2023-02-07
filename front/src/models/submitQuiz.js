@@ -1,8 +1,10 @@
 export const SubmitQuizModel = {
-    quizId: "",
-    studentId: "",
-    grade: "",
-    date: "",
-    passed: false,
-    answers: []
+  quizId: "",
+  student: "",
+  nameOfQuiz: "",
+  grade: 0,
+  date: "",
+  passed: false,
+  answers: [],
+  wrongAnswers: [],
 };
