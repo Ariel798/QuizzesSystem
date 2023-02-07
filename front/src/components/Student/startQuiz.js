@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { QuizzesService } from "../../services/quizzesService";
 import { Quiz } from "../../models/quiz";
@@ -11,41 +11,46 @@ export function StartQuiz() {
   const [subQuiz, setSubQuiz] = useState({ SubQuiz });
   let [started, setStarted] = useState(false);
   let { quizid, studentid } = useParams();
+  let { quizId, studentId } = useState();
+
   const { loadQuiz } = QuizzesService();
   const navigate = useNavigate();
   const { postSubmittedQuiz } = StudentQuizService();
   const [quiz, setQuiz] = useState(Quiz);
+
   const startQuiz = () => {
     setStarted((pre) => {
       return !pre;
     });
   };
   const prevQuestion = () => {
-    setQuesNum((pre) => {
-      pre = pre - 1;
-      return pre;
-    });
+    if (quesNum > 0) {
+      setQuesNum((pre) => {
+        pre = pre - 1;
+        return pre;
+      });
+    } else {
+      return alert("can't find");
+    }
   };
   const nextQuestion = () => {
-    setQuesNum((pre) => {
-      pre = pre + 1;
-      return pre;
-    });
+    if (quesNum < userAnswers.length) {
+      setQuesNum((pre) => {
+        pre = pre + 1;
+        return pre;
+      });
+    } else {
+      return alert("can't find");
+    }
   };
   const selectAnswer = ({ target }) => {
     const { id } = target;
-    let temp = [...userAnswers];
-    if (quesNum < userAnswers.length) {
-      temp[quesNum] = id;
-      setuserAnswers(temp);
-    } else {
-      temp.push(id);
-      setuserAnswers((pre) => {
-        pre = temp;
-        return pre;
-      });
-    }
+    setuserAnswers((pre) => {
+      pre[quesNum] = id;
+      return [...pre];
+    });
   };
+
   const submitQuiz = () => {
     if (window.confirm("Are you sure?")) {
       let temp = {};
@@ -55,13 +60,19 @@ export function StartQuiz() {
       temp["quizId"] = quiz._id;
       temp["studentId"] = studentid;
       setSubQuiz(temp);
-      postSubmittedQuiz(temp).then(() => alert("Sent!"));
+      postSubmittedQuiz(temp).then((result) => {
+        alert("Sent!")
+        navigate("/endScreenQuiz/" + result._id );
+      }
+      );
     }
   };
 
   useEffect(() => {
     loadQuiz(quizid).then((resp) => {
       setQuiz(resp);
+      console.log(resp.questions);
+      setuserAnswers(resp.questions.map(() => -1));
     });
   }, []);
 
@@ -82,7 +93,7 @@ export function StartQuiz() {
                   ? "btnNav btn-success"
                   : "btnNav btn-warning"
               }
-              onClick={() => submitQuiz()}
+              onClick={() => submitQuiz(quizId, studentId)}
             >
               Submit
             </button>
@@ -95,8 +106,19 @@ export function StartQuiz() {
                   <div id={key} key={key} onClick={selectAnswer}>
                     <button
                       id={key}
-                      className="answerBtn"
-                      style={{ margin: 5, height: "70px", width: "250px" }}
+                      name="answer"
+                      className="btn btn-primary"
+                      style={{
+                        margin: 5,
+                        height: "70px",
+                        width: "250px",
+                        border: "6px solid",
+                        boxShadow: `${
+                          userAnswers[quesNum] == key
+                            ? "0px 0px 10px black"
+                            : "none"
+                        }`,
+                      }}
                       type="radio"
                     >
                       {item}
@@ -117,7 +139,6 @@ export function StartQuiz() {
         </div>
       ) : (
         <div>
-          {" "}
           <h1 className="headline">Good Luck!</h1>
           <button className="startQuiz" onClick={() => startQuiz()}>
             Start

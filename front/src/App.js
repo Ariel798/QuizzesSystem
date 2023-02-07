@@ -12,6 +12,7 @@ import { ReportByStudent } from "./components/Report/reportByStudent";
 import { ReportByQuiz } from "./components/Report/reportByQuiz";
 import { ShowReportStudent } from "./components/Report/showReportStudent";
 import { ShowReportQuiz } from "./components/Report/showReportQuiz";
+import { EndScreenQuiz } from "./components/Student/endScreenQuiz";
 import { EditQuizPage } from "./components/quizzes/editQuizPage";
 import { EditQuestionPage } from "./components/Question/editQuestionPage";
 
@@ -37,6 +38,7 @@ function App() {
           element={<ShowReportStudent />}
         ></Route>
         <Route path="/showReportQuiz/:id" element={<ShowReportQuiz />}></Route>
+        <Route path="/endScreenQuiz/:submittedId" element={<EndScreenQuiz />}></Route>
         <Route path="/quizzespage/editquiz/:quizid" element ={<EditQuizPage></EditQuizPage>}></Route>
         <Route path="/editquestionpage/:questionid" element ={<EditQuestionPage></EditQuestionPage>}></Route>
       </Routes>

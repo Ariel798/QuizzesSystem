@@ -11,6 +11,18 @@ export function SubmittedQuizService() {
       console.error(error);
     }
   };
+
+  const getSubmittedQuizById = async (id) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3001/submittedquizzes/getsubmittedquizbyid/" + id
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const getAllSubmittedQuiz = async (_id) => {
     try {
       const response = await axios.get(
@@ -21,9 +33,9 @@ export function SubmittedQuizService() {
       console.error(error);
     }
   };
-
   return {
     getSubmittedQuizzes,
+    getSubmittedQuizById,
     getAllSubmittedQuiz,
   };
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Navbar } from "../navbar";
+import "./reportsPage.css";
 
 export function ReportsPage() {
   const navigate = useNavigate();
@@ -8,12 +9,30 @@ export function ReportsPage() {
   return (
     <div>
       <Navbar />
-      <button onClick={() => navigate("/reportByQuiz")}>Report by Quiz</button>
-      <button onClick={() => navigate("/reportByStudent")}>
-        Report by Student
-      </button>
-
-      <h1>its ReportsPage!</h1>
+      <div className="main">
+        <div className="overlay">
+          <div className="content">
+            <div className="main-menuDiv">
+              <p>Report by Quiz</p>
+              <button
+                className="button"
+                onClick={() => navigate("/reportByQuiz")}
+              >
+                Go To Quiz
+              </button>
+            </div>
+            <div className="main-menuDiv">
+              <p>Report by Student</p>
+              <button
+                className="button"
+                onClick={() => navigate("/reportByStudent")}
+              >
+                Go To Student
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
