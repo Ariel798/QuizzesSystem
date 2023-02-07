@@ -74,44 +74,10 @@ export function MainMenu() {
               </li>
             </ol>
           </div>
-
-          {/* <div className="main">
-            <div className="overlay">
-              <div className="content">
-                <div className="main-menuDiv">
-                  <p style={{ color: "white" }}>Quizzes</p>
-                  <button
-                    className="button"
-                    onClick={() => navigate("./quizzesPage")}
-                  >
-                    Go To
-                  </button>
-                </div>
-                <div className="main-menuDiv">
-                  <p style={{ color: "white" }}>Questions</p>
-                  <button
-                    className="button"
-                    onClick={() => navigate("./questionsPage")}
-                  >
-                    Go To
-                  </button>
-                </div>
-                <div className="main-menuDiv">
-                  <p style={{ color: "white" }}>Reports</p>
-                  <button
-                    className="button"
-                    onClick={() => navigate("./reportsPage")}
-                  >
-                    Go To
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       ) : (
         <div className="main">
-          <video src={Video} autoPlay loop muted />
+          {/* <video src={Video} autoPlay loop muted /> */}
           <div className="overlay">
             <div className="content">
               <h1 className="head">Login</h1>

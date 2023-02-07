@@ -4,6 +4,7 @@ const {
   getSubmittedQuizzes,
   addSubmittedQuiz,
   getAllSubmittedQuiz,
+  getSubmittedQuizById,
 } = require("../dal/mongo/submittedQuizzesContext");
 const { checkSubmittedQuiz } = require("../bl/quizLogic");
 
@@ -14,6 +15,11 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   getAllSubmittedQuiz(id).then((data) => res.send(data));
+});
+
+router.get("/getsubmittedquizbyid/:id", (req, res) => {
+  const { id } = req.params;
+  getSubmittedQuizById(id).then((data) => res.send(data));
 });
 
 router.post("/", (req, res) => {

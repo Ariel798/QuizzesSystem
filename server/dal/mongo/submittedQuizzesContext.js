@@ -6,6 +6,9 @@ mongoose.set("strictQuery", true);
 const getSubmittedQuizzes = () => {
   return SubmittedQuiz.find({});
 };
+const getSubmittedQuizById = (id) => {
+  return SubmittedQuiz.find({ _id : id});
+};
 
 const getAllSubmittedQuiz = async (quizId) => {
   const res = await SubmittedQuiz.find({ quizId: quizId });
@@ -47,6 +50,7 @@ const addSubmittedQuiz = async (subQuiz) => {
 
 module.exports = {
   getSubmittedQuizzes,
+  getSubmittedQuizById,
   getAllSubmittedQuiz,
   addSubmittedQuiz,
 };

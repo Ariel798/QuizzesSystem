@@ -38,7 +38,7 @@ function App() {
           element={<ShowReportStudent />}
         ></Route>
         <Route path="/showReportQuiz/:id" element={<ShowReportQuiz />}></Route>
-        <Route path="/endScreenQuiz/:quizid/:studentid" element={<EndScreenQuiz />}></Route>
+        <Route path="/endScreenQuiz/:submittedId" element={<EndScreenQuiz />}></Route>
         <Route path="/quizzespage/editquiz/:quizid" element ={<EditQuizPage></EditQuizPage>}></Route>
         <Route path="/editquestionpage/:questionid" element ={<EditQuestionPage></EditQuestionPage>}></Route>
       </Routes>

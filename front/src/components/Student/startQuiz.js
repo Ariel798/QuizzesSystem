@@ -60,8 +60,11 @@ export function StartQuiz() {
       temp["quizId"] = quiz._id;
       temp["studentId"] = studentid;
       setSubQuiz(temp);
-      postSubmittedQuiz(temp).then(() => alert("Sent!"));
-      navigate("/endScreenQuiz/" + quizid + "/" + studentid);
+      postSubmittedQuiz(temp).then((result) => {
+        alert("Sent!")
+        navigate("/endScreenQuiz/" + result._id );
+      }
+      );
     }
   };
 
