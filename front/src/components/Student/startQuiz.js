@@ -30,17 +30,15 @@ export function StartQuiz() {
         return pre;
       });
     } else {
-      return alert("can't find");
     }
   };
   const nextQuestion = () => {
-    if (quesNum < userAnswers.length) {
+    if (quesNum < userAnswers.length - 1) {
       setQuesNum((pre) => {
         pre = pre + 1;
         return pre;
       });
     } else {
-      return alert("can't find");
     }
   };
   const selectAnswer = ({ target }) => {
@@ -61,10 +59,9 @@ export function StartQuiz() {
       temp["studentId"] = studentid;
       setSubQuiz(temp);
       postSubmittedQuiz(temp).then((result) => {
-        alert("Sent!")
-        navigate("/endScreenQuiz/" + result._id );
-      }
-      );
+        alert("Sent!");
+        navigate("/endScreenQuiz/" + result._id);
+      });
     }
   };
 
