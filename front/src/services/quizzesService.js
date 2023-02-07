@@ -43,9 +43,11 @@ export function QuizzesService() {
     }
   };
 
-  const editQuiz = async (_id) => {
+  const editQuiz = async (quiz) => {
     try {
-      const response = await axios.put("http://localhost:3001/quizzes/" + _id);
+      const response = await axios.put("http://localhost:3001/quizzes/", {
+        quiz: JSON.stringify(quiz),
+      });
       return response.data;
     } catch (error) {
       console.error(error);

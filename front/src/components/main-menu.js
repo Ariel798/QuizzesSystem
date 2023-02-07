@@ -2,7 +2,6 @@ import "../App.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LoginService } from "../services/loginService";
-import Video from "../asset/main2.mp4";
 import "./main-menu.css";
 import { Navbar } from "./navbar";
 

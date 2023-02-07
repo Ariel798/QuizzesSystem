@@ -3,6 +3,7 @@ import { Form, useNavigate, useParams } from "react-router-dom";
 import { StudentQuizService } from "../../services/studentQuizService";
 import { StudentModel } from "../../models/student";
 import { SubmitQuizModel } from "../../models/submitQuiz";
+import { Navbar } from "../navbar";
 
 export function ReportByStudent() {
   const studentQuizService = StudentQuizService();
@@ -24,6 +25,7 @@ export function ReportByStudent() {
 
   return (
     <div>
+      <Navbar></Navbar>
       <div>
         <form>
           <input

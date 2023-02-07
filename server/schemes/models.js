@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const adminScheme = mongoose.Schema({
   userName: String,
   password: String,
@@ -9,7 +8,10 @@ const questionScheme = mongoose.Schema({
   subject: String,
   body: String,
   answers: Array,
+  topic: String,
+  multiAns: Boolean,
   correctAnswer: Number,
+  correctAnswersArr: Array,
   quizzes: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -17,11 +19,17 @@ const questionScheme = mongoose.Schema({
     },
   ],
 });
-
 const quizScheme = mongoose.Schema({
   name: String,
   subject: String,
-
+  topic: String,
+  ordered: Boolean,
+  minGrade: Number,
+  passedMessage: String,
+  failedMessage: String,
+  randomized: Boolean,
+  language: String,
+  active: Boolean,
   questions: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -29,7 +37,6 @@ const quizScheme = mongoose.Schema({
     },
   ],
 });
-
 const submittedQuizScheme = mongoose.Schema({
   quizId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -44,10 +51,10 @@ const submittedQuizScheme = mongoose.Schema({
   date: { type: String },
   nameOfQuiz: { type: String },
   passed: Boolean,
+  message: String,
   answers: Array,
   wrongAnswers: Array,
 });
-
 const studentScheme = mongoose.Schema({
   fname: { type: String, required: true },
   lname: { type: String, required: true },

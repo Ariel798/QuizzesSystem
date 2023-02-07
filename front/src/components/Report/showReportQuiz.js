@@ -5,6 +5,7 @@ import { Quiz } from "../../models/quiz";
 
 import { SubmittedQuizService } from "../../services/submittedQuizService";
 import { QuizzesService } from "../../services/quizzesService";
+import { Navbar } from "../navbar";
 
 export function ShowReportQuiz() {
   const navigate = useNavigate();
@@ -28,23 +29,26 @@ export function ShowReportQuiz() {
 
   return (
     <div>
-      <div>
-        quiz name: <h1>{dataQuiz.name}</h1>
-      </div>
-
+      <Navbar></Navbar>
       <table className="table table-striped">
         <tbody>
           <tr>
-            <th>name of student</th>
-            <th>grade</th>
-            <th>date</th>
+            <th>Student Id</th>
+            <th>Date</th>
+            <th>Grade</th>
+            <th>Passed</th>
           </tr>
           {dataSubmitQuiz?.map((item, key) => {
             return (
               <tr key={key}>
                 <td>{item.studentId} </td>
+                <td>{item.date} </td>
                 <td>{item.grade}</td>
-                <td>{item.date}</td>
+                <td
+                  style={!item?.passed ? { color: "red" } : { color: "green" }}
+                >
+                  {!item?.passed ? "Failed" : "Passed"}
+                </td>
               </tr>
             );
           })}

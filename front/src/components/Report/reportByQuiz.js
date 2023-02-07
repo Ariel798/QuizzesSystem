@@ -4,6 +4,7 @@ import { Quiz } from "../../models/quiz";
 import { QuizzesService } from "../../services/quizzesService";
 import { StudentQuizService } from "../../services/studentQuizService";
 import { SubmittedQuizService } from "../../services/submittedQuizService";
+import { Navbar } from "../navbar";
 
 export function ReportByQuiz() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export function ReportByQuiz() {
 
   return (
     <div>
+      <Navbar></Navbar>
       <div>
         select test:
         <div>

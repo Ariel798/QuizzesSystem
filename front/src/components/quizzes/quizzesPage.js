@@ -8,6 +8,7 @@ import { Navbar } from "../navbar";
 export function QuizzesPage() {
   const [quizzes, setQuizzes] = useState([]);
   const [search, setSearch] = useState("");
+  const [showDetails, setShowDetails] = useState(false);
 
   const service = QuizzesService();
   let navigate = useNavigate();
@@ -26,6 +27,10 @@ export function QuizzesPage() {
     alert("link Copy!");
   };
 
+  async function editQuiz(item) {
+    navigate("./editquiz/" + item._id);
+  }
+
   async function deleteData(_id) {
     if (window.confirm("Are you sure?")) {
       const arr = await service.deleteQuiz(_id);
@@ -33,15 +38,14 @@ export function QuizzesPage() {
     }
   }
 
-  async function showData(_id) {
-    const question = await service.showQuiz(_id);
-    alert(JSON.stringify(question));
+  async function showData(item) {
+    const quiz = await service.loadQuiz(item._id);
+    navigate();
   }
 
   return (
     <div>
       <Navbar />
-
       <div>
         <div>
           <form>
@@ -59,16 +63,15 @@ export function QuizzesPage() {
             </button>
           </div>
         </div>
-
+        {showDetails && <div></div>}
         <table className="table table-striped">
           <tbody>
             <tr>
               <th>Id</th>
               <th>Link</th>
               <th>Test Name</th>
-              <th>subject</th>
-              <th>number of question</th>
-              <th>function</th>
+              <th>Subject</th>
+              <th>Functions</th>
             </tr>
             {quizzes
               .filter((item) => {
@@ -77,30 +80,41 @@ export function QuizzesPage() {
                   : item.name.toLowerCase().includes(search);
               })
               ?.map((item, key) => {
-                // _id, number, subject, body, answers, correctAnswer, quizzes
-                //  name: String,
-                // subject: String,
-                // questions:
                 return (
                   <tr key={key}>
                     <td>{item._id}</td>
                     <td>
-                      <button onClick={() => linkClickHandler(item)}>
+                      <button
+                        style={{ width: "80px", textAlign: "center" }}
+                        onClick={() => linkClickHandler(item)}
+                      >
                         Link
                       </button>
                     </td>
                     <td>{item.name}</td>
                     <td>{item.subject}</td>
-                    <td>{item.questions}</td>
                     <td>
-                      <button
-                        onClick={() => showData(item._id)}
-                        className="btn btn-success"
+                      <div
+                        style={{ width: "80px", textAlign: "center" }}
+                        className={
+                          item.active ? "btn btn-success" : "btn btn-warning"
+                        }
                       >
-                        Show
-                      </button>
-                      <button className="btn btn-success">Edit</button>
+                        {item.active ? "Active" : "Inactive"}
+                      </div>
                       <button
+                        style={{
+                          width: "80px",
+                          textAlign: "center",
+                          marginLeft: "2px",
+                        }}
+                        className="btn btn-success"
+                        onClick={() => editQuiz(item)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        style={{ width: "80px", textAlign: "center" }}
                         onClick={() => deleteData(item._id)}
                         className="btn btn-danger"
                       >
