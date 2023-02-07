@@ -4,4 +4,6 @@ export const Question = {
   body: "",
   answers: [],
   correctAnswer: 0,
+  correctAnswersArr: [],
+  multiAns: false,
 };
