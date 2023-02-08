@@ -7,7 +7,7 @@ const getSubmittedQuizzes = () => {
   return SubmittedQuiz.find({});
 };
 const getSubmittedQuizById = (id) => {
-  return SubmittedQuiz.find({ _id : id});
+  return SubmittedQuiz.find({ _id: id });
 };
 
 const getAllSubmittedQuiz = async (quizId) => {

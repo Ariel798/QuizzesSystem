@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./navbar.css";
 import { NavLink } from "react-router-dom";
 
-function myFunction() {
+function adjustNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
@@ -31,8 +31,8 @@ export function Navbar() {
       <NavLink className="nav-link" to="/reportsPage" exact="true">
         <span>R</span>eports
       </NavLink>
-      <a href="javascript:void(0);" class="icon" onClick={() => myFunction()}>
-        <i class="fa fa-bars"></i>
+      <a className="icon" onClick={() => adjustNav()}>
+        <i className="fa fa-bars"></i>
       </a>
     </div>
   );

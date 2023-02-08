@@ -38,11 +38,6 @@ export function QuizzesPage() {
     }
   }
 
-  async function showData(item) {
-    const quiz = await service.loadQuiz(item._id);
-    navigate();
-  }
-
   return (
     <div>
       <Navbar />

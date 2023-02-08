@@ -7,6 +7,7 @@ import { SubQuiz } from "../../models/subQuiz";
 
 export function StartQuiz() {
   const [userAnswers, setuserAnswers] = useState([]);
+  const [userMultipleAnsArr, setUserMultipleAnsArr] = useState([[]]);
   const [quesNum, setQuesNum] = useState(0);
   const [subQuiz, setSubQuiz] = useState({ SubQuiz });
   let [started, setStarted] = useState(false);
@@ -29,7 +30,6 @@ export function StartQuiz() {
         pre = pre - 1;
         return pre;
       });
-    } else {
     }
   };
   const nextQuestion = () => {
@@ -38,17 +38,36 @@ export function StartQuiz() {
         pre = pre + 1;
         return pre;
       });
-    } else {
     }
   };
   const selectAnswer = ({ target }) => {
     const { id } = target;
-    setuserAnswers((pre) => {
-      pre[quesNum] = id;
-      return [...pre];
-    });
+    if (!quiz.questions[quesNum].multiAns) {
+      setuserAnswers((pre) => {
+        pre[quesNum] = id;
+        return [...pre];
+      });
+    } else {
+      let temp = [...userAnswers];
+      if (temp[quesNum] === -1) {
+        temp[quesNum] = [];
+      }
+      if (temp[quesNum].includes(id)) {
+        const filtered = temp[quesNum].filter(
+          (item) => Number(item) !== Number(id)
+        );
+        temp[quesNum] = [...filtered];
+        setuserAnswers([...temp]);
+        return;
+      }
+      temp[quesNum].push(id);
+      const filtered = temp[quesNum].filter(
+        (item, index) => temp[quesNum].indexOf(item) === index
+      );
+      temp[quesNum] = [...filtered];
+      setuserAnswers([...temp]);
+    }
   };
-
   const submitQuiz = () => {
     if (window.confirm("Are you sure?")) {
       let temp = {};
@@ -68,7 +87,6 @@ export function StartQuiz() {
   useEffect(() => {
     loadQuiz(quizid).then((resp) => {
       setQuiz(resp);
-      console.log(resp.questions);
       setuserAnswers(resp.questions.map(() => -1));
     });
   }, []);
@@ -96,33 +114,87 @@ export function StartQuiz() {
             </button>
           </div>
           <div className="questionArea">
-            <h1>{quiz.questions[quesNum]?.body}</h1>
+            {quiz.questions[quesNum]?.multiAns ? (
+              <h1>
+                {quiz.questions[quesNum]?.body} <br></br>
+                <span>(multiple answers..)</span>
+              </h1>
+            ) : (
+              <h1>{quiz.questions[quesNum]?.body}</h1>
+            )}
             <div style={{ display: "block" }}>
-              {quiz.questions[quesNum]?.answers.map((item, key) => {
-                return (
-                  <div id={key} key={key} onClick={selectAnswer}>
-                    <button
-                      id={key}
-                      name="answer"
-                      className="btn btn-primary"
-                      style={{
-                        margin: 5,
-                        height: "70px",
-                        width: "250px",
-                        border: "6px solid",
-                        boxShadow: `${
-                          userAnswers[quesNum] == key
-                            ? "0px 0px 10px black"
-                            : "none"
-                        }`,
-                      }}
-                      type="radio"
-                    >
-                      {item}
-                    </button>
-                  </div>
-                );
-              })}
+              {quiz.questions[quesNum]?.multiAns
+                ? quiz.questions[quesNum]?.answers.map((item, key) => {
+                    if (
+                      Array.isArray(userAnswers[quesNum]) &&
+                      userAnswers[quesNum]?.includes(`${key}`)
+                    ) {
+                      return (
+                        <div id={key} key={key} onClick={selectAnswer}>
+                          <button
+                            id={key}
+                            name="answer"
+                            className="btn btn-success"
+                            style={{
+                              margin: 5,
+                              height: "70px",
+                              width: "250px",
+                              border: "6px solid",
+                              boxShadow: `${"0px 0px 10px blue"}`,
+                            }}
+                            type="checkbox"
+                          >
+                            {item}
+                          </button>
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div id={key} key={key} onClick={selectAnswer}>
+                          <button
+                            id={key}
+                            name="answer"
+                            className="btn btn-success"
+                            style={{
+                              margin: 5,
+                              height: "70px",
+                              width: "250px",
+                              border: "6px solid",
+                              boxShadow: `${"none"}`,
+                            }}
+                            type="checkbox"
+                          >
+                            {item}
+                          </button>
+                        </div>
+                      );
+                    }
+                  })
+                : quiz.questions[quesNum]?.answers.map((item, key) => {
+                    return (
+                      <div id={key} key={key} onClick={selectAnswer}>
+                        <button
+                          id={key}
+                          name="answer"
+                          className="btn btn-primary"
+                          style={{
+                            margin: 5,
+                            height: "70px",
+                            width: "250px",
+                            border: "6px solid",
+                            boxShadow: `${
+                              userAnswers[quesNum] == key
+                                ? "0px 0px 10px blue"
+                                : "none"
+                            }`,
+                          }}
+                          type="radio"
+                        >
+                          {item}
+                        </button>
+                      </div>
+                    );
+                  })}
             </div>
           </div>
           <div style={{ bottom: 0 }}>
