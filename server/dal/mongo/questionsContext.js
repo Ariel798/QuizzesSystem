@@ -32,6 +32,7 @@ const deleteQuestion = (id) => {
 };
 
 const editQuestion = (question) => {
+  console.log(question._id);
   Question.updateOne(
     { _id: question._id },
     { $set: { ...question } },

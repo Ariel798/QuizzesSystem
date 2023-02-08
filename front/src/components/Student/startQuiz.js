@@ -7,7 +7,6 @@ import { SubQuiz } from "../../models/subQuiz";
 
 export function StartQuiz() {
   const [userAnswers, setuserAnswers] = useState([]);
-  const [userMultipleAnsArr, setUserMultipleAnsArr] = useState([[]]);
   const [quesNum, setQuesNum] = useState(0);
   const [subQuiz, setSubQuiz] = useState({ SubQuiz });
   let [started, setStarted] = useState(false);

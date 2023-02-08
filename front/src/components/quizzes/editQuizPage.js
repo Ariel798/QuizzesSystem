@@ -82,7 +82,7 @@ export function EditQuizPage() {
   useEffect(() => {
     fetchQuizData();
   }, []);
-  
+
   return (
     <div>
       <Navbar></Navbar>
