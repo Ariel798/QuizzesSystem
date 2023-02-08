@@ -37,47 +37,49 @@ export function MainMenu() {
       {user ? (
         <div>
           <Navbar />
-          {/* <video src={Video} autoPlay loop muted /> */}
-
           <div style={{ marginBottom: "3rem" }}>
-            <button className="submit-btn" onClick={() => logOut()}>
+            <button
+              className="submit-btn"
+              style={{ backgroundColor: "red", marginTop: 3 }}
+              onClick={() => logOut()}
+            >
               Log Out
             </button>
           </div>
           <h1 className="head">
             Welcome <strong>{user.userName}</strong> to the exam system!
           </h1>
-          <h2>Steps:</h2>
-          <div>
-            <ol>
-              <li>
-                <h3>
-                  <u>First:</u> Go to "Questions" And Create a question
-                </h3>
-              </li>
-              <li>
-                <h3>
-                  <u>Second:</u> Go to "Quizzes" take a test
-                </h3>
-              </li>
-              <li>
-                <h3>
-                  <u>After that,</u> when the test is ready, copy the link and
-                  send it to whoever needs it
-                </h3>
-              </li>
-              <li>
-                <h3>
-                  <u>Finally:</u> you can see the test results on the "Reports"
-                  page.
-                </h3>
-              </li>
-            </ol>
+          <div
+            className="thought"
+            style={{
+              backgroundColor: "darkGray",
+              color: "black",
+              margin: "auto",
+              width: "600px",
+              height: "auto",
+              borderRadius: "6px",
+              padding: "3px",
+              fontStyle: "italic",
+              fontFamily: "sans-serif",
+            }}
+          >
+            <h3>Go to "Questions" and create a question</h3>
+            <br></br>
+            <h3>Go to "Quizzes" and create a test</h3>
+            <br></br>
+            <h3>
+              When the test is ready, copy the link and send it to whoever needs
+              it
+            </h3>
+            <br></br>
+            <h3>
+              You can collect data on the submitted quizzes on the "Reports"
+              page
+            </h3>
           </div>
         </div>
       ) : (
         <div className="main">
-          {/* <video src={Video} autoPlay loop muted /> */}
           <div className="overlay">
             <div className="content">
               <h1 className="head">Login</h1>

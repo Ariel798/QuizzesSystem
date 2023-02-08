@@ -17,14 +17,9 @@ export function Navbar() {
       <NavLink className="navbar-brand navbar-logo" to="/" exact="true">
         <span>E</span>xam <span>S</span>ystem
       </NavLink>
-      <NavLink className="nav-link" to="/" exact="true">
-        <span>H</span>ome
-      </NavLink>
-
       <NavLink className="nav-link" to="/quizzesPage" exact="true">
         <span>Q</span>uizzes
       </NavLink>
-
       <NavLink className="nav-link" to="/questionsPage" exact="true">
         <span>Q</span>uestions
       </NavLink>

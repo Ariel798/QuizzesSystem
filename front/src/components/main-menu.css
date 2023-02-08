@@ -88,3 +88,16 @@ input::focus::placeholder {
   font-weight: 300;
   margin-bottom: 50px;
 }
+.thought {
+  position: relative;
+  width: 300px;
+  text-align: center;
+  line-height: 1.4em;
+  margin: 40px auto;
+  background-color: #fff;
+  border: 8px solid #333;
+  border-radius: 30px;
+  font-family: sans-serif;
+  padding: 20px;
+  font-size: large;
+}
