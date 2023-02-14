@@ -8,9 +8,11 @@ import { Navbar } from "../navbar";
 const Step1 = ({ newQuiz, onChangeModel, onNextStep }) => (
   <div>
     <Navbar></Navbar>
-    <div style={{ margin: "auto" }}>
+    <div style={{ margin: "auto", width: "700px" }}>
       <div>
-        <h1 className="headline">Setup new Quiz</h1>
+        <h1 className="headline" style={{ marginTop: "-3rem" }}>
+          Setup new Quiz
+        </h1>
       </div>
       <div style={{ width: "400px", margin: "auto" }}>
         <h1>Name</h1>
@@ -58,19 +60,36 @@ const Step1 = ({ newQuiz, onChangeModel, onNextStep }) => (
           </option>
         </select>
       </div>
-      <div>
-        <h1>Language</h1>
-        <select name="language" onChange={onChangeModel}>
-          <option value="" disabled>
-            Select language
-          </option>
-          <option value="hebrew" key="hebrew">
-            Hebrew
-          </option>
-          <option value="english" key="english">
-            English
-          </option>
-        </select>
+      <div
+        style={{
+          display: "inline-block",
+          display: "flex",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ margin: "auto", height: "100px" }}>
+          <h1>Language</h1>
+          <select name="language" onChange={onChangeModel}>
+            <option value="" disabled>
+              Select language
+            </option>
+            <option value="hebrew" key="hebrew">
+              Hebrew
+            </option>
+            <option value="english" key="english">
+              English
+            </option>
+          </select>
+        </div>
+        <div style={{ margin: "auto", height: "100px" }}>
+          <h1>Random</h1>
+          <input
+            onClick={onChangeModel}
+            defaultChecked={newQuiz.randomized}
+            name="randomized"
+            type="checkbox"
+          ></input>
+        </div>
       </div>
     </div>
     <button
@@ -198,6 +217,13 @@ export function NewQuizPage() {
   const [newQuiz, setNewQuiz] = useState(Quiz);
   const [quesList, setQuesList] = useState([]);
   const onChangeModel = (e) => {
+    if (e.target.type == "checkbox") {
+      setNewQuiz((pre) => {
+        pre[e.target.name] = e.target.checked;
+        return { ...pre };
+      });
+      return;
+    }
     setNewQuiz((pre) => {
       pre[e.target.name] = e.target.value;
       return { ...pre };

@@ -1,7 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-//
+//Split models
+//Add hebrew gui
+//Fix bug in details comp.
 
 const { vertifyToken } = require("./lib/jwt");
 const path =
@@ -38,12 +40,12 @@ app.use((req, res, next) => {
     next();
   });
 });
+
 app.use("/students", require("./routes/students.route"));
 app.use("/login", require("./routes/login-route"));
 app.use("/questions", require("./routes/questions.route"));
 app.use("/quizzes", require("./routes/quizzes.route"));
 app.use("/submittedquizzes", require("./routes/submitted-quizzes.route"));
-//
 
 app.listen(3001, (err) => {
   if (err) console.log(err);

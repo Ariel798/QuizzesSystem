@@ -55,6 +55,8 @@ button {
   margin: 24px 0 24px;
   text-align: center;
   text-transform: uppercase;
+  margin-top: 0px;
+  padding-top: 50px;
 }
 .topnav {
   background-color: #333;

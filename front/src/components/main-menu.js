@@ -64,11 +64,11 @@ export function MainMenu() {
           >
             <h3>Go to "Questions" and create a question</h3>
             <br></br>
-            <h3>Go to "Quizzes" and create a test</h3>
+            <h3>Go to "Quizzes" and generate a test</h3>
             <br></br>
             <h3>
-              When the test is ready, copy the link and send it to whoever needs
-              it
+              When the test is ready, copy the link and send it to whoever you
+              desire
             </h3>
             <br></br>
             <h3>

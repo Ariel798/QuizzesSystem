@@ -11,21 +11,6 @@ export function StudentQuiz() {
   const [newStudent, setStudent] = useState(StudentModel);
 
   let navigate = useNavigate();
-  useEffect(() => {}, []);
-
-  // useEffect(()=>{
-  //     async function fetchData() {
-  //       const arr = await service.getQuizzes();
-  //       setQuizzes(arr);
-  //       console.log(arr);
-  //     }
-  //     fetchData();
-  //   },[])
-
-  async function saveDataStudent() {
-    const arr = await service.getStudents();
-    setStudent(arr);
-  }
 
   const changeModel = (e) => {
     let tmp = { ...newStudent };
@@ -46,7 +31,7 @@ export function StudentQuiz() {
   }
 
   return (
-    <div>
+    <div style={{ height: "100%", backgroundColor: "#FFD580" }}>
       <h1 className="headline">Fill Contact Details</h1>
       <div>
         <div>
@@ -86,7 +71,7 @@ export function StudentQuiz() {
           onClick={() => saveStudentModel()}
           className="btn btn-success"
         >
-          Start
+          Save
         </button>
       </div>
     </div>

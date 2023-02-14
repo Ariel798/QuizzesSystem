@@ -85,13 +85,16 @@ export function StartQuiz() {
 
   useEffect(() => {
     loadQuiz(quizid).then((resp) => {
+      if (resp["randomized"]) {
+        resp.questions = resp.questions.sort((a, b) => 0.5 - Math.random());
+      }
       setQuiz(resp);
       setuserAnswers(resp.questions.map(() => -1));
     });
   }, []);
 
   return (
-    <div>
+    <div style={{ height: "100%" }}>
       {started ? (
         <div>
           <div className="topnav ">
@@ -206,7 +209,7 @@ export function StartQuiz() {
           </div>
         </div>
       ) : (
-        <div>
+        <div style={{ backgroundColor: "#FFD580", height: "100%" }}>
           <h1 className="headline">Good Luck!</h1>
           <button className="startQuiz" onClick={() => startQuiz()}>
             Start
