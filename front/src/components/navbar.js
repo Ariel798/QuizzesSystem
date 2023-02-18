@@ -35,8 +35,8 @@ export function Navbar() {
       <NavLink className="nav-link fa fa-file" to="/reportsPage" exact="true">
         <span>R</span>eports
       </NavLink>
-      <a href="javascript:void(0);" class="icon" onClick={() => adustNav()}>
-        <i class="fa fa-bars"></i>
+      <a className="icon" onClick={() => adustNav()}>
+        <i className="fa fa-bars"></i>
       </a>
     </div>
   );

@@ -46,34 +46,35 @@ export function StudentQuiz() {
             />
           </div>
 
-        <div>
-          Last Name
-          <input
-            value={newStudent.lname}
-            onChange={changeModel}
-            type="text"
-            name="lname"
-            required
-          />
-        </div>
-        <div>
-          E-mail
-          <input
-            value={newStudent.email}
-            onChange={changeModel}
-            type="email"
-            name="email"
-            pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          onClick={() => saveStudentModel()}
-          className="btn btn-success"
-        >
-          Save
-        </button>
+          <div>
+            Last Name
+            <input
+              value={newStudent.lname}
+              onChange={changeModel}
+              type="text"
+              name="lname"
+              required
+            />
+          </div>
+          <div>
+            E-mail
+            <input
+              value={newStudent.email}
+              onChange={changeModel}
+              type="email"
+              name="email"
+              pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            onClick={() => saveStudentModel()}
+            className="btn btn-success"
+          >
+            Save
+          </button>
+        </form>
       </div>
     </div>
   );
