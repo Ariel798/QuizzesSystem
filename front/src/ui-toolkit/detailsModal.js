@@ -30,10 +30,24 @@ export function DetailsModal(props) {
                   );
                 })}
               </div>
-              <div>
-                Correct Answer:
-                {props.item?.answers[props.item?.correctAnswer]}
-              </div>
+              {props.item?.multiAns ? (
+                <div>
+                  Correct Answers:
+                  {props.item?.answers.map((item, index) => {
+                    if (
+                      Number(index) ===
+                      Number(props.item?.correctAnswersArr[index])
+                    ) {
+                      return <div key={index}>{item},</div>;
+                    }
+                  })}
+                </div>
+              ) : (
+                <div>
+                  Correct Answer:
+                  {props.item?.answers[props.item?.correctAnswer]}
+                </div>
+              )}
             </>
           }
           handleClose={togglePopup}

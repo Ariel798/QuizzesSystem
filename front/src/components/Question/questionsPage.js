@@ -83,7 +83,7 @@ export function QuestionsPage() {
                 <tr key={key}>
                   <td>{item._id}</td>
                   <td>{item.body}</td>
-                  <td>{item.type}</td>
+                  <td>{item.multiAns ? "Multi" : "Single"}</td>
                   <td>
                     <DetailsModal item={item}></DetailsModal>
                     <button

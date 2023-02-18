@@ -4,14 +4,47 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Navbar } from "../navbar";
 
 export function EditQuestionPage() {
-  //use state
   const [question, setQuestion] = useState({});
   const service = QuestionService();
   let { questionid } = useParams();
+  const navigate = useNavigate();
 
-  async function editQuestion(_id) {
-    const editQuestion = await service.editQuestion(_id);
-    setQuestion(editQuestion);
+  const updateModel = ({ target }) => {
+    let temp = { ...question };
+    temp.answers[target.id] = target.value;
+    setQuestion(temp);
+  };
+
+  const updateCorrectAns = (e) => {
+    if (question["multiAns"]) {
+      const tmpQues = { ...question };
+      let tempArr = [...question.correctAnswersArr];
+      if (tempArr.includes(e.target.id)) {
+        const filtered = tempArr.filter(
+          (item) => Number(item) !== Number(e.target.id)
+        );
+        tmpQues["correctAnswersArr"] = [...filtered];
+        setQuestion(tmpQues);
+        return;
+      }
+      tempArr.push(e.target.id);
+      const filtered = tempArr.filter(
+        (item, index) => tempArr.indexOf(item) === index
+      );
+      tmpQues["correctAnswersArr"] = [...filtered];
+      setQuestion(tmpQues);
+      return;
+    }
+    let tmp = { ...question };
+    tmp[e.target.name] = Number(e.target.id);
+    setQuestion(tmp);
+  };
+
+  function editQuestion() {
+    service.editQuestion(question).then((resp) => {
+      alert("Saved!");
+      navigate("../questionspage");
+    });
   }
 
   useEffect(() => {
@@ -25,25 +58,66 @@ export function EditQuestionPage() {
   return (
     <div>
       <Navbar />
-      <h1>{question.body}</h1>
+      <h1 className="headline" style={{ marginTop: "3rem" }}>
+        {question.body}
+      </h1>
 
-      {question.answers?.map((item, key) => {
-        return (
-          <div key={key}>
-            <span> Answer: {item}</span>
-            <input
-              type="text"
-              value={item.answers}
-              onChange={(e) => setQuestion(e.target.value)}
-            ></input>
-            <input type="radio"></input>
-          </div>
-        );
-      })}
+      {question?.multiAns
+        ? question.answers?.map((item, key) => {
+            return (
+              <div key={key}>
+                <span style={{ color: "black" }}>Answer:</span>
+                <input
+                  id={key}
+                  style={{ display: "inline-block", color: "black" }}
+                  type="text"
+                  value={item}
+                  onChange={updateModel}
+                ></input>
+                <input
+                  id={key}
+                  style={{
+                    display: "inline-block",
+                    width: "auto",
+                    minWidth: "20px",
+                  }}
+                  onChange={updateCorrectAns}
+                  checked={question.correctAnswersArr.includes(`${key}`)}
+                  type="checkbox"
+                ></input>
+              </div>
+            );
+          })
+        : question.answers?.map((item, key) => {
+            return (
+              <div key={key}>
+                <span style={{ color: "black" }}>Answer:</span>
+                <input
+                  id={key}
+                  style={{ display: "inline-block", color: "black" }}
+                  type="text"
+                  value={item}
+                  onChange={updateModel}
+                ></input>
+                <input
+                  id={key}
+                  type="radio"
+                  name="correctAnswer"
+                  style={{
+                    display: "inline-block",
+                    width: "auto",
+                    minWidth: "20px",
+                  }}
+                  onChange={updateCorrectAns}
+                  checked={question.correctAnswer === key}
+                ></input>
+              </div>
+            );
+          })}
       <button
         className="btn btn-primary"
         type="submit"
-        onClick={() => editQuestion(question)}
+        onClick={() => editQuestion()}
       >
         update
       </button>

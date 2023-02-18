@@ -7,12 +7,17 @@ const getQuizzes = async () => {
 };
 
 const loadQuiz = async (id) => {
-  const quiz = await Quiz.findById(id);
-  await quiz.populate("questions");
-  return quiz;
+  try {
+    const quiz = await Quiz.findById(id);
+    await quiz.populate("questions");
+    return quiz;
+  } catch (error) {
+    return null;
+  }
 };
 
 const addQuiz = async (quiz) => {
+  console.log(quiz);
   const newQuiz = new Quiz(quiz);
   return await newQuiz.save();
 };

@@ -3,8 +3,19 @@ function checkSubmittedQuiz(subQuiz) {
   let grade = 100;
   let quesNum = 0;
   let wrongAnswersArr = [];
-  for (let question in subQuiz.quizId.questions) {
-    if (subQuiz.quizId.multiAns) {
+  for (let q in subQuiz.quizId.questions) {
+    if (subQuiz.quizId.questions[quesNum].multiAns) {
+      if (
+        !arrayCompare(
+          subQuiz.quizId.questions[quesNum].correctAnswersArr,
+          subQuiz.answers[quesNum]
+        )
+      ) {
+        wrongAnswersArr.push(subQuiz.answers[quesNum]);
+        grade -= errorWeight;
+      }
+      quesNum++;
+      continue;
     }
     if (
       !Number(subQuiz.quizId.questions[quesNum].correctAnswer) ==
@@ -27,25 +38,18 @@ function checkSubmittedQuiz(subQuiz) {
   return subQuiz;
 }
 
-function arrayCompare(_arr1, _arr2) {
-  if (
-    !Array.isArray(_arr1) ||
-    !Array.isArray(_arr2) ||
-    _arr1.length !== _arr2.length
-  ) {
-    return false;
-  }
+function arrayCompare(array1, array2) {
+  if (array1.length === array2.length) {
+    return array1.every((element) => {
+      if (array2.includes(element)) {
+        return true;
+      }
 
-  const arr1 = _arr1.concat().sort();
-  const arr2 = _arr2.concat().sort();
-
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
       return false;
-    }
+    });
   }
 
-  return true;
+  return false;
 }
 
 module.exports = {

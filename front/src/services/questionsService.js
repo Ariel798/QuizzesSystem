@@ -56,10 +56,13 @@ export function QuestionService() {
     }
   };
 
-  const editQuestion = async (_id) => {
+  const editQuestion = async (question) => {
     try {
       const response = await axios.put(
-        "http://localhost:3001/questions/" + _id
+        "http://localhost:3001/questions/" + question._id,
+        {
+          question: JSON.stringify(question),
+        }
       );
       return response.data;
     } catch (error) {

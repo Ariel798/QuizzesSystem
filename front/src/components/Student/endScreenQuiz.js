@@ -35,9 +35,9 @@ export function EndScreenQuiz() {
       <hr></hr>
       <h2>
         summary: number of question {dataSubmitQuiz[0]?.answers?.length}{" "}
-        <h2 style={{ color: "red" }}>
+        <div style={{ color: "red" }}>
           wrong : {dataSubmitQuiz[0]?.wrongAnswers?.length}
-        </h2>
+        </div>
       </h2>
       <hr></hr>
       <button>review your answer </button>

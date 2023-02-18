@@ -44,6 +44,10 @@ export function ShowReportQuiz(props) {
     setDataSubmitQuiz(finishQuizStudentName);
   }
 
+  const navWrongAnswers = (item) => {
+    navigate("/wrongAnswers/" + item._id + "/" + item.studentId);
+  };
+
   var Avgmarks = 0;
 
   for (var i = 0; i < dataSubmitQuiz?.length; i++) {
@@ -89,6 +93,7 @@ export function ShowReportQuiz(props) {
             <th>Date</th>
             <th>Grade</th>
             <th>Passed</th>
+            <th>Function</th>
           </tr>
           {dataSubmitQuiz.slice(indexOfFirstPost, indexOfLastPost)
             .filter((row) => {
@@ -116,6 +121,14 @@ export function ShowReportQuiz(props) {
                   >
                     {!item?.passed ? "Failed" : "Passed"}
                   </td>
+                  <td>
+                  <button
+                    className="button"
+                    onClick={() => navWrongAnswers(item)}
+                  >
+                    Examine
+                  </button>
+                </td>
                 </tr>
               );
             })}

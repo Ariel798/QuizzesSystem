@@ -11,21 +11,6 @@ export function StudentQuiz() {
   const [newStudent, setStudent] = useState(StudentModel);
 
   let navigate = useNavigate();
-  useEffect(() => {}, []);
-
-  // useEffect(()=>{
-  //     async function fetchData() {
-  //       const arr = await service.getQuizzes();
-  //       setQuizzes(arr);
-  //       console.log(arr);
-  //     }
-  //     fetchData();
-  //   },[])
-
-  async function saveDataStudent() {
-    const arr = await service.getStudents();
-    setStudent(arr);
-  }
 
   const changeModel = (e) => {
     let tmp = { ...newStudent };
@@ -46,7 +31,7 @@ export function StudentQuiz() {
   }
 
   return (
-    <div>
+    <div style={{ height: "100%", backgroundColor: "#FFD580" }}>
       <h1 className="headline">Fill Contact Details</h1>
       <div>
         <form>
@@ -61,35 +46,34 @@ export function StudentQuiz() {
             />
           </div>
 
-          <div>
-            Last Name
-            <input
-              value={newStudent.lname}
-              onChange={changeModel}
-              type="text"
-              name="lname"
-              required
-            />
-          </div>
-          <div>
-            E-mail
-            <input
-              value={newStudent.email}
-              onChange={changeModel}
-              type="email"
-              name="email"
-              pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            onClick={() => saveStudentModel()}
-            className="btn btn-success"
-          >
-            Start
-          </button>
-        </form>
+        <div>
+          Last Name
+          <input
+            value={newStudent.lname}
+            onChange={changeModel}
+            type="text"
+            name="lname"
+            required
+          />
+        </div>
+        <div>
+          E-mail
+          <input
+            value={newStudent.email}
+            onChange={changeModel}
+            type="email"
+            name="email"
+            pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          onClick={() => saveStudentModel()}
+          className="btn btn-success"
+        >
+          Save
+        </button>
       </div>
     </div>
   );

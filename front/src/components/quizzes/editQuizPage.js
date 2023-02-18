@@ -13,6 +13,13 @@ export function EditQuizPage() {
   const quizService = QuizzesService();
   const questionsService = QuestionService();
   const onChangeQuiz = ({ target }) => {
+    if (target.type == "checkbox") {
+      setQuiz((pre) => {
+        pre[target.name] = target.checked;
+        return { ...pre };
+      });
+      return;
+    }
     let temp = { ...quiz };
     temp[target.name] = target.value;
     setQuiz((pre) => {
@@ -82,7 +89,7 @@ export function EditQuizPage() {
   useEffect(() => {
     fetchQuizData();
   }, []);
-  
+
   return (
     <div>
       <Navbar></Navbar>
@@ -102,7 +109,7 @@ export function EditQuizPage() {
         <input
           name="minGrade"
           type="number"
-          value={quiz.minGrade}
+          value={quiz.minGrade || 50}
           onChange={onChangeQuiz}
         ></input>
       </div>
@@ -111,7 +118,7 @@ export function EditQuizPage() {
         <input
           name="passedMessage"
           type="text"
-          value={quiz.passedMessage}
+          value={quiz.passedMessage || ""}
           onChange={onChangeQuiz}
         ></input>
       </div>
@@ -122,8 +129,17 @@ export function EditQuizPage() {
         <input
           name="failedMessage"
           type="text"
-          value={quiz.failedMessage}
+          value={quiz.failedMessage || ""}
           onChange={onChangeQuiz}
+        ></input>
+      </div>
+      <div>
+        <p>Randomized</p>
+        <input
+          onClick={onChangeQuiz}
+          defaultChecked={quiz.randomized}
+          name="randomized"
+          type="checkbox"
         ></input>
       </div>
       <div className="list">
