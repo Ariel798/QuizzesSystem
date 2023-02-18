@@ -8,7 +8,7 @@ export function DetailsModal(props) {
   };
   return (
     <div style={{ display: "inline-block" }}>
-      <button className="btn btn-success" onClick={togglePopup}>
+      <button className="btn btn-success fa fa-info-circle" onClick={togglePopup}>
         Details
       </button>
       {isOpen && (

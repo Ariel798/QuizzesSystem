@@ -49,45 +49,47 @@ export function StudentQuiz() {
     <div>
       <h1 className="headline">Fill Contact Details</h1>
       <div>
-        <div>
-          First Name
-          <input
-            type="text"
-            value={newStudent.fname}
-            onChange={changeModel}
-            name="fname"
-            required
-          />
-        </div>
+        <form>
+          <div>
+            First Name
+            <input
+              type="text"
+              value={newStudent.fname}
+              onChange={changeModel}
+              name="fname"
+              required
+            />
+          </div>
 
-        <div>
-          Last Name
-          <input
-            value={newStudent.lname}
-            onChange={changeModel}
-            type="text"
-            name="lname"
-            required
-          />
-        </div>
-        <div>
-          E-mail
-          <input
-            value={newStudent.email}
-            onChange={changeModel}
-            type="email"
-            name="email"
-            pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          onClick={() => saveStudentModel()}
-          className="btn btn-success"
-        >
-          Start
-        </button>
+          <div>
+            Last Name
+            <input
+              value={newStudent.lname}
+              onChange={changeModel}
+              type="text"
+              name="lname"
+              required
+            />
+          </div>
+          <div>
+            E-mail
+            <input
+              value={newStudent.email}
+              onChange={changeModel}
+              type="email"
+              name="email"
+              pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            onClick={() => saveStudentModel()}
+            className="btn btn-success"
+          >
+            Start
+          </button>
+        </form>
       </div>
     </div>
   );

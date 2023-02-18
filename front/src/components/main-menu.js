@@ -40,7 +40,7 @@ export function MainMenu() {
           {/* <video src={Video} autoPlay loop muted /> */}
 
           <div style={{ marginBottom: "3rem" }}>
-            <button className="submit-btn" onClick={() => logOut()}>
+            <button style={{  color: "black",marginRight: "60px" }} className="submit-btn fa fa-sign-out" onClick={() => logOut()}>
               Log Out
             </button>
           </div>

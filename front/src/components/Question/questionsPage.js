@@ -1,13 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { QuestionService } from "../../services/questionsService";
 import "./questionsPage.css";
 import { Navbar } from "../navbar";
 import { DetailsModal } from "../../ui-toolkit/detailsModal";
+import { Pagination } from "../pagination";
 
 export function QuestionsPage() {
   const [questions, setQuestions] = useState([]);
   const [search, setSearch] = useState("");
+
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  //
+
   const service = QuestionService();
   let navigate = useNavigate();
 
@@ -21,11 +33,12 @@ export function QuestionsPage() {
     const question = await service.showQuestion(_id);
     alert(JSON.stringify(question));
   }
+  async function fetchData() {
+    const arr = await service.getQuestions();
+    setQuestions(arr);
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      const arr = await service.getQuestions();
-      setQuestions(arr);
-    }
     fetchData();
   }, []);
 
@@ -38,13 +51,14 @@ export function QuestionsPage() {
             type="text"
             placeholder="search by text..."
             onChange={(e) => setSearch(e.target.value)}
+            style={{background: "blue"}}
           ></input>
         </form>
       </div>
 
       <h1>Questions</h1>
       <div>
-        <button onClick={() => navigate("/newQuestionPage")}>
+        <button onClick={() => navigate("/newQuestionPage")} className="btn btn-primary fa fa-plus">
           New Question
         </button>
       </div>
@@ -58,6 +72,7 @@ export function QuestionsPage() {
             <th>function</th>
           </tr>
           {questions
+            .slice(indexOfFirstPost, indexOfLastPost)
             .filter((item) => {
               return search.toLowerCase() === ""
                 ? item
@@ -72,14 +87,14 @@ export function QuestionsPage() {
                   <td>
                     <DetailsModal item={item}></DetailsModal>
                     <button
-                      className="btn btn-success"
+                      className="btn btn-success fa fa-edit"
                       onClick={() => navigate(`/editquestionpage/${item._id}`)}
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => deleteData(item._id)}
-                      className="btn btn-danger"
+                      className="btn btn-danger fa fa-trash"
                     >
                       Delete
                     </button>
@@ -89,6 +104,11 @@ export function QuestionsPage() {
             })}
         </tbody>
       </table>
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={questions.length}
+        paginate={paginate}
+      />
     </div>
   );
 }

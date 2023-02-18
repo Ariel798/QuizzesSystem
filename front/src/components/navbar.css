@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 span {
-  color: gray;
+  color:  rgb(99, 144, 187);
 }
 
 .topnav a {
@@ -22,7 +22,7 @@ span {
 }
 
 .topnav a.active {
-  background-color: #04aa6d;
+  background-color: rgb(172, 175, 58);
   color: white;
 }
 
