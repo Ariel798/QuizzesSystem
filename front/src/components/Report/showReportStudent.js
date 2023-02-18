@@ -14,6 +14,9 @@ export function ShowReportStudent() {
     const resStudent = await studentQuizService.getStudentQuizzes(id);
     setStudent(resStudent[0]);
   }
+  const navWrongAnswers = (item) => {
+    navigate("/wrongAnswers/" + item._id + "/" + student._id);
+  };
   useEffect(() => {
     fetchDataSubmitQuiz(id);
   }, []);
@@ -29,9 +32,10 @@ export function ShowReportStudent() {
         <tbody>
           <tr>
             <th>name of test</th>
-            <th>grade</th>
-            <th>date</th>
-            <th>status</th>
+            <th>Grade</th>
+            <th>Date</th>
+            <th>Function</th>
+            <th>Status</th>
           </tr>
           {student.submittedQuizzes?.map((item, key) => {
             return (
@@ -43,6 +47,14 @@ export function ShowReportStudent() {
                   style={!item?.passed ? { color: "red" } : { color: "green" }}
                 >
                   {!item?.passed ? "Failed" : "Passed"}
+                </td>
+                <td>
+                  <button
+                    className="button"
+                    onClick={() => navWrongAnswers(item)}
+                  >
+                    Examine
+                  </button>
                 </td>
               </tr>
             );

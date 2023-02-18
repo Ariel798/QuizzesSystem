@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Question } from "../../../models/question";
 import { QuestionService } from "../../../services/questionsService";
+import { Navbar } from "../../navbar";
 
 export function NewQuestionPage() {
   const [answer, setAnswer] = useState("");
@@ -64,11 +65,7 @@ export function NewQuestionPage() {
 
   return (
     <div>
-      <div className="topnav">
-        <button className="btnNav" onClick={() => navigate("../questionsPage")}>
-          Questions
-        </button>
-      </div>
+      <Navbar />
       <h1>New Question</h1>
       <div>
         <h4>Subject</h4>

@@ -2,8 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 //Split models
-//Add hebrew gui
-//Fix bug in details comp.
 
 const { vertifyToken } = require("./lib/jwt");
 const path =

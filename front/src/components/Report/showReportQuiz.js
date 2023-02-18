@@ -22,7 +22,9 @@ export function ShowReportQuiz() {
       await submittedQuizService.getAllSubmittedQuiz(_id);
     setDataSubmitQuiz(finishQuizStudentName);
   }
-
+  const navWrongAnswers = (item) => {
+    navigate("/wrongAnswers/" + item._id + "/" + item.studentId);
+  };
   useEffect(() => {
     fetchData(id);
   }, []);
@@ -37,6 +39,7 @@ export function ShowReportQuiz() {
             <th>Date</th>
             <th>Grade</th>
             <th>Passed</th>
+            <th>Function</th>
           </tr>
           {dataSubmitQuiz?.map((item, key) => {
             return (
@@ -48,6 +51,14 @@ export function ShowReportQuiz() {
                   style={!item?.passed ? { color: "red" } : { color: "green" }}
                 >
                   {!item?.passed ? "Failed" : "Passed"}
+                </td>
+                <td>
+                  <button
+                    className="button"
+                    onClick={() => navWrongAnswers(item)}
+                  >
+                    Examine
+                  </button>
                 </td>
               </tr>
             );

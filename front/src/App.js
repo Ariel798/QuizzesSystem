@@ -15,6 +15,7 @@ import { ShowReportQuiz } from "./components/Report/showReportQuiz";
 import { EndScreenQuiz } from "./components/Student/endScreenQuiz";
 import { EditQuizPage } from "./components/quizzes/editQuizPage";
 import { EditQuestionPage } from "./components/Question/editQuestionPage";
+import { WrongAnswers } from "./components/sharedPages/wrongAnswers";
 
 function App() {
   return (
@@ -34,13 +35,26 @@ function App() {
         <Route path="/reportByStudent" element={<ReportByStudent />}></Route>
         <Route path="/reportByQuiz" element={<ReportByQuiz />}></Route>
         <Route
+          path="/wronganswers/:subquizid/:studentid"
+          element={<WrongAnswers></WrongAnswers>}
+        ></Route>
+        <Route
           path="/ShowReportStudent/:id"
           element={<ShowReportStudent />}
         ></Route>
         <Route path="/showReportQuiz/:id" element={<ShowReportQuiz />}></Route>
-        <Route path="/endScreenQuiz/:submittedId" element={<EndScreenQuiz />}></Route>
-        <Route path="/quizzespage/editquiz/:quizid" element ={<EditQuizPage></EditQuizPage>}></Route>
-        <Route path="/editquestionpage/:questionid" element ={<EditQuestionPage></EditQuestionPage>}></Route>
+        <Route
+          path="/endScreenQuiz/:submittedId"
+          element={<EndScreenQuiz />}
+        ></Route>
+        <Route
+          path="/quizzespage/editquiz/:quizid"
+          element={<EditQuizPage></EditQuizPage>}
+        ></Route>
+        <Route
+          path="/editquestionpage/:questionid"
+          element={<EditQuestionPage></EditQuestionPage>}
+        ></Route>
       </Routes>
     </Router>
   );
