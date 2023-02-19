@@ -59,7 +59,7 @@ export function QuizzesPage() {
               type="text"
               placeholder="search by name..."
               onChange={(e) => setSearch(e.target.value)}
-              style={{background: "blue"}}
+              style={{ background: "#333" }}
             ></input>
           </form>
 
@@ -67,7 +67,10 @@ export function QuizzesPage() {
             <u>Quizzes</u>
           </h1>
           <div style={{ display: "flex", display: "inline-block" }}>
-            <button onClick={() => navigate("/quizzespage/newquiz")} className="btn btn-primary fa fa-plus">
+            <button
+              onClick={() => navigate("/quizzespage/newquiz")}
+              className="btn btn-primary fa fa-plus"
+            >
               Generate New
             </button>
           </div>

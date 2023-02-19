@@ -44,7 +44,7 @@ function App() {
         ></Route>
         <Route path="/showReportQuiz/:id" element={<ShowReportQuiz />}></Route>
         <Route
-          path="/endScreenQuiz/:submittedId"
+          path="/endScreenQuiz/:submittedId/:studentid"
           element={<EndScreenQuiz />}
         ></Route>
         <Route

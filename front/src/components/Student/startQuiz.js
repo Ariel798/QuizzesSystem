@@ -79,7 +79,7 @@ export function StartQuiz() {
       setSubQuiz(temp);
       postSubmittedQuiz(temp).then((result) => {
         alert("Sent!");
-        navigate("/endScreenQuiz/" + result._id);
+        navigate("/endScreenQuiz/" + result._id + "/" + studentid);
       });
     }
   };

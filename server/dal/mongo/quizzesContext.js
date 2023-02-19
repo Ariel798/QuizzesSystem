@@ -17,7 +17,6 @@ const loadQuiz = async (id) => {
 };
 
 const addQuiz = async (quiz) => {
-  console.log(quiz);
   const newQuiz = new Quiz(quiz);
   return await newQuiz.save();
 };

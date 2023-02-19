@@ -18,7 +18,6 @@ export function QuestionsPage() {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  //
 
   const service = QuestionService();
   let navigate = useNavigate();
@@ -51,14 +50,17 @@ export function QuestionsPage() {
             type="text"
             placeholder="search by text..."
             onChange={(e) => setSearch(e.target.value)}
-            style={{background: "blue"}}
+            style={{ background: "#333" }}
           ></input>
         </form>
       </div>
 
       <h1>Questions</h1>
       <div>
-        <button onClick={() => navigate("/newQuestionPage")} className="btn btn-primary fa fa-plus">
+        <button
+          onClick={() => navigate("/newQuestionPage")}
+          className="btn btn-primary fa fa-plus"
+        >
           New Question
         </button>
       </div>

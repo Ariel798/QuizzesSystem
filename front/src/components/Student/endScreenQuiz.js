@@ -4,9 +4,10 @@ import { SubmitQuizModel } from "../../models/submitQuiz";
 import { SubmittedQuizService } from "../../services/submittedQuizService";
 
 export function EndScreenQuiz() {
+  const navigate = useNavigate();
   const [dataSubmitQuiz, setDataSubmitQuiz] = useState([{ SubmitQuizModel }]);
   const submittedQuizService = SubmittedQuizService();
-  let { submittedId } = useParams();
+  let { submittedId, studentid } = useParams();
 
   async function fetchData(submittedId) {
     const submittedQuiz = await submittedQuizService.getSubmittedQuizById(
@@ -14,7 +15,9 @@ export function EndScreenQuiz() {
     );
     setDataSubmitQuiz(submittedQuiz);
   }
-
+  const navWrongAnswers = () => {
+    navigate("/wrongAnswers/" + submittedId + "/" + studentid);
+  };
   useEffect(() => {
     fetchData(submittedId);
   }, []);
@@ -40,7 +43,8 @@ export function EndScreenQuiz() {
         </div>
       </h2>
       <hr></hr>
-      <button>review your answer </button>
+      <button onClick={() => navWrongAnswers()}></button>
+      {dataSubmitQuiz?.observable && <div>Bra</div>}
     </div>
   );
 }
