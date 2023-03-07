@@ -11,11 +11,12 @@ textarea {
   background-color: darkgray;
 }
 .plusButton {
-  border-radius: 2rem;
-  background-color: beige;
+  border-radius: 0.7rem;
+  background-color: white;
+  font-size: 30px;
 }
 .answer {
-  background-color: thistle;
+  background-color: white;
   margin: "auto";
   width: "200px";
   word-wrap: "break-word";
@@ -23,4 +24,6 @@ textarea {
   border: "solid";
   border-width: "3px";
   align-items: "center";
+}
+td {
 }

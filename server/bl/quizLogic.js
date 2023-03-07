@@ -4,24 +4,24 @@ function checkSubmittedQuiz(subQuiz) {
   let quesNum = 0;
   let wrongAnswersArr = [];
   for (let q in subQuiz.quizId.questions) {
+    wrongAnswersArr.push(-1);
     if (subQuiz.quizId.questions[quesNum].multiAns) {
-      if (
-        !arrayCompare(
-          subQuiz.quizId.questions[quesNum].correctAnswersArr,
-          subQuiz.answers[quesNum]
-        )
-      ) {
+      let correctM = arrayCompare(
+        subQuiz.quizId.questions[quesNum].correctAnswersArr,
+        subQuiz.answers[quesNum]
+      );
+      if (!correctM) {
         wrongAnswersArr.push(subQuiz.answers[quesNum]);
         grade -= errorWeight;
       }
       quesNum++;
       continue;
     }
-    if (
-      !Number(subQuiz.quizId.questions[quesNum].correctAnswer) ==
-      subQuiz.answers[quesNum]
-    ) {
-      wrongAnswersArr.push(Number(subQuiz.answers[quesNum]));
+    let correct =
+      Number(subQuiz.quizId.questions[quesNum].correctAnswer) ===
+      Number(subQuiz.answers[quesNum]);
+    if (!correct) {
+      wrongAnswersArr[quesNum] = Number(subQuiz.answers[quesNum]);
       grade -= errorWeight;
     }
     quesNum++;

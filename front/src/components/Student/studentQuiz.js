@@ -31,48 +31,51 @@ export function StudentQuiz() {
   }
 
   return (
-    <div style={{ height: "100%", backgroundColor: "#FFD580" }}>
-      <h1 className="headline">Fill Contact Details</h1>
-      <div>
-        <form>
-          <div>
-            First Name
-            <input
-              type="text"
-              value={newStudent.fname}
-              onChange={changeModel}
-              name="fname"
-              required
-            />
-          </div>
-
-          <div>
-            Last Name
-            <input
-              value={newStudent.lname}
-              onChange={changeModel}
-              type="text"
-              name="lname"
-              required
-            />
-          </div>
-          <div>
-            E-mail
-            <input
-              value={newStudent.email}
-              onChange={changeModel}
-              type="email"
-              name="email"
-              pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
-              required
-            />
-          </div>
+    <div
+      style={{
+        height: "100%",
+        backgroundColor: "#FFD580",
+        verticalAlign: "center",
+      }}
+    >
+      <h1 className="headline">Fill Student Details</h1>
+      <div className="main">
+        <form style={{ marginTop: "10%" }}>
+          <input
+            style={{ width: "15rem" }}
+            type="text"
+            value={newStudent.fname}
+            onChange={changeModel}
+            name="fname"
+            placeholder="First Name"
+            required
+          />
+          <input
+            style={{ width: "15rem" }}
+            value={newStudent.lname}
+            onChange={changeModel}
+            type="text"
+            name="lname"
+            placeholder="Last Name"
+            required
+          />
+          <input
+            style={{ width: "15rem" }}
+            value={newStudent.email}
+            onChange={changeModel}
+            type="email"
+            name="email"
+            pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
+            placeholder="E-mail"
+            required
+          />
           <button
+            style={{ width: "15rem" }}
             type="submit"
             onClick={() => saveStudentModel()}
             className="btn btn-success"
           >
-            Save
+            Register/Sign In
           </button>
         </form>
       </div>

@@ -36,12 +36,7 @@ export function EndScreenQuiz() {
       <hr></hr>
       <h2>message: {dataSubmitQuiz[0].message}</h2>
       <hr></hr>
-      <h2>
-        summary: number of question {dataSubmitQuiz[0]?.answers?.length}{" "}
-        <div style={{ color: "red" }}>
-          wrong : {dataSubmitQuiz[0]?.wrongAnswers?.length}
-        </div>
-      </h2>
+      <h2>summary: number of question {dataSubmitQuiz[0]?.answers?.length} </h2>
       <hr></hr>
       <button onClick={() => navWrongAnswers()}></button>
       {dataSubmitQuiz?.observable && <div>Bra</div>}

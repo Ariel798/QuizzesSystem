@@ -89,6 +89,7 @@ export function StartQuiz() {
         resp.questions = resp.questions.sort((a, b) => 0.5 - Math.random());
       }
       setQuiz(resp);
+      console.log(resp);
       setloaded(true);
       setuserAnswers(resp.questions.map(() => -1));
     });
@@ -119,12 +120,12 @@ export function StartQuiz() {
               </div>
               <div className="questionArea">
                 {quiz.questions[quesNum]?.multiAns ? (
-                  <h1>
+                  <h1 className="headline">
                     {quiz.questions[quesNum]?.body} <br></br>
                     <span>(multiple answers..)</span>
                   </h1>
                 ) : (
-                  <h1 style={{ direction: "rtl" }}>
+                  <h1 className="headline" style={{ direction: "rtl" }}>
                     {quiz.questions[quesNum]?.body}
                   </h1>
                 )}
@@ -190,7 +191,7 @@ export function StartQuiz() {
                                 border: "6px solid",
                                 boxShadow: `${
                                   userAnswers[quesNum] == key
-                                    ? "0px 0px 10px blue"
+                                    ? "0px 0px 20px orange"
                                     : "none"
                                 }`,
                               }}
@@ -204,10 +205,18 @@ export function StartQuiz() {
                 </div>
               </div>
               <div style={{ bottom: 0 }}>
-                <button className="btnNav" onClick={() => nextQuestion()}>
+                <button
+                  style={{ margin: "5px", background: "orange" }}
+                  className="button"
+                  onClick={() => nextQuestion()}
+                >
                   הבא
                 </button>
-                <button className="btnNav" onClick={() => prevQuestion()}>
+                <button
+                  style={{ margin: "5px", background: "orange" }}
+                  className="button"
+                  onClick={() => prevQuestion()}
+                >
                   הקודם
                 </button>
               </div>
@@ -256,12 +265,12 @@ export function StartQuiz() {
               </div>
               <div className="questionArea">
                 {quiz.questions[quesNum]?.multiAns ? (
-                  <h1>
+                  <h1 className="headline">
                     {quiz.questions[quesNum]?.body} <br></br>
                     <span>(multiple answers..)</span>
                   </h1>
                 ) : (
-                  <h1>{quiz.questions[quesNum]?.body}</h1>
+                  <h1 className="headline">{quiz.questions[quesNum]?.body}</h1>
                 )}
                 <div style={{ display: "block" }}>
                   {quiz.questions[quesNum]?.multiAns
@@ -281,7 +290,7 @@ export function StartQuiz() {
                                   height: "70px",
                                   width: "250px",
                                   border: "6px solid",
-                                  boxShadow: `${"0px 0px 10px blue"}`,
+                                  boxShadow: `${"0px 0px 20px orange"}`,
                                 }}
                                 type="checkbox"
                               >
@@ -325,7 +334,7 @@ export function StartQuiz() {
                                 border: "6px solid",
                                 boxShadow: `${
                                   userAnswers[quesNum] == key
-                                    ? "0px 0px 10px blue"
+                                    ? "0px 0px 20px orange"
                                     : "none"
                                 }`,
                               }}
@@ -339,10 +348,18 @@ export function StartQuiz() {
                 </div>
               </div>
               <div style={{ bottom: 0 }}>
-                <button className="btnNav" onClick={() => prevQuestion()}>
+                <button
+                  style={{ margin: "2px", background: "orange" }}
+                  className="button"
+                  onClick={() => prevQuestion()}
+                >
                   Prev
                 </button>
-                <button className="btnNav" onClick={() => nextQuestion()}>
+                <button
+                  style={{ margin: "2px", background: "orange" }}
+                  className="button"
+                  onClick={() => nextQuestion()}
+                >
                   Next
                 </button>
               </div>

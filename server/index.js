@@ -1,16 +1,17 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-//Split models
 
 const { vertifyToken } = require("./lib/jwt");
-const path =
-  "mongodb+srv://Liorko310799:310799@mernlior.og9x762.mongodb.net/MernLior?retryWrites=true&w=majority";
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
-mongoose.connect(path, (err) => {
+
+//Connection string:
+//"mongodb+srv://Liorko310799:310799@mernlior.og9x762.mongodb.net/MernLior?retryWrites=true&w=majority"
+mongoose.connect(process.env.CONNECTION_STRING, (err) => {
   if (err) {
     console.log(err);
+    x;
   }
 });
 

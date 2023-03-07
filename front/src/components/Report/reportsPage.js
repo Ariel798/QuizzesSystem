@@ -11,9 +11,7 @@ export function ReportsPage() {
       <Navbar />
       <div className="main">
         <div className="overlay">
-          <h1>
-            <u>Report</u>{" "}
-          </h1>
+          <h1 className="headline">Reports</h1>
           <div className="content">
             <div className="main-menuDiv">
               <p>Report by Quiz</p>

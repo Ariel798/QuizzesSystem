@@ -64,50 +64,72 @@ export function NewQuestionPage() {
   }
 
   return (
-    <div>
+    <div style={{ margin: "auto" }}>
       <Navbar />
-      <h1>New Question</h1>
-      <div>
-        <h4>Subject</h4>
-        <select name="subject" defaultValue="" onChange={changeModel}>
-          <option value="" disabled>
-            Select one
-          </option>
-          <option value="development">Development</option>
-        </select>
-      </div>
-      <div>
-        <h4>Question</h4>
-        <textarea
-          type="text"
-          name="body"
-          value={quesModel.body}
-          onChange={changeModel}
-        ></textarea>
-      </div>
-      <div>
-        <h4>Multiple answers</h4>
-        <input
-          name="multiAns"
-          value={quesModel.multiAns}
-          onChange={changeModel}
-          type="checkbox"
-        ></input>
-      </div>
-      <div>
-        <h4>Add Answer:</h4>
-        <input
-          ref={inputElement}
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-        ></input>
-        <button
-          style={{ width: "50px", height: "50px", marginBottom: "30px" }}
-          className="plusButton"
-          onClick={() => addToAnswers()}
-        >
-          +
-        </button>
+      <h1 className="headline">Create Question</h1>
+      <table style={{ margin: "auto", border: 0, width: "20rem" }}>
+        <tbody>
+          <tr>
+            <td style={{ width: "6rem" }}>
+              <h3>Subject</h3>
+            </td>
+            <td>
+              <select name="subject" defaultValue="" onChange={changeModel}>
+                <option value="" disabled>
+                  Select one
+                </option>
+                <option value="development">Development</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h3>Question</h3>
+            </td>
+            <td>
+              <input
+                style={{
+                  marginTop: "2rem",
+                  width: "10rem",
+                }}
+                type="text"
+                name="body"
+                value={quesModel.body}
+                onChange={changeModel}
+              ></input>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h3>Multiple answers</h3>
+            </td>
+            <td>
+              <input
+                name="multiAns"
+                value={quesModel.multiAns}
+                onChange={changeModel}
+                type="checkbox"
+              ></input>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style={{ display: "inline-block" }}>
+        <h1>Add Answer:</h1>
+        <div style={{ display: "flex", verticalAlign: "center" }}>
+          <input
+            ref={inputElement}
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+          ></input>
+          <button
+            style={{ width: "50px", height: "50px", marginBottom: "30px" }}
+            className="plusButton"
+            onClick={() => addToAnswers()}
+          >
+            +
+          </button>
+        </div>
       </div>
       <div>
         {quesModel["multiAns"]

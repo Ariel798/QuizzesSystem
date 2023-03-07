@@ -65,12 +65,15 @@ export function WrongAnswers() {
                       {item?.correctAnswersArr.length > 0 ? (
                         <td style={{ color: "red" }}>
                           {subQuiz?.wrongAnswers.map((ans) => {
-                            return `${item?.answers[ans]}, `;
+                            if (ans !== -1) {
+                              return `${item?.answers[ans]}, `;
+                            }
                           })}
                         </td>
                       ) : (
                         <td style={{ color: "red" }}>
-                          {item?.answers[subQuiz?.wrongAnswers[index]]}
+                          {subQuiz?.wrongAnswers[index] != -1 &&
+                            item?.answers[subQuiz?.wrongAnswers[index]]}
                         </td>
                       )}
                     </tr>
