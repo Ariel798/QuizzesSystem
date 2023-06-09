@@ -11,7 +11,6 @@ mongoose.set("strictQuery", true);
 mongoose.connect(process.env.CONNECTION_STRING, (err) => {
   if (err) {
     console.log(err);
-    x;
   }
 });
 

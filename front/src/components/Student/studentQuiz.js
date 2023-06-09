@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { StudentQuizService } from "../../services/studentQuizService";
 import { StudentModel } from "../../models/student";
@@ -15,13 +15,15 @@ export function StudentQuiz() {
   const changeModel = (e) => {
     let tmp = { ...newStudent };
     tmp[e.target.name] = e.target.value;
-    setStudent(tmp);
+    setStudent((pre) => {
+      pre = { ...tmp };
+      return pre;
+    });
   };
 
-  const saveStudentModel = () => {
-    let tmp = { ...newStudent };
-    setStudent(tmp);
-    postStudent(tmp).then((resp) => {
+  const saveStudentModel = (e) => {
+    e.preventDefault();
+    postStudent(newStudent).then((resp) => {
       navigate("/startquiz/" + quizid + "/" + resp._id);
     });
   };
@@ -65,14 +67,13 @@ export function StudentQuiz() {
             onChange={changeModel}
             type="email"
             name="email"
-            pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/"
             placeholder="E-mail"
             required
           />
           <button
             style={{ width: "15rem" }}
             type="submit"
-            onClick={() => saveStudentModel()}
+            onClick={(e) => saveStudentModel(e)}
             className="btn btn-success"
           >
             Register/Sign In
